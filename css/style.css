@@ -3095,7 +3095,10 @@ section[id],
   line-height: 1.45;
   box-shadow: 0 16px 36px -12px rgba(19, 35, 122, 0.55);
   transform: translate3d(-50%, calc(100% + 40px), 0);
-  transition: transform 420ms var(--ease);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 420ms var(--ease), opacity 250ms ease, visibility 0s linear 420ms;
 }
 
 .toast-notice.is-error {
@@ -3103,7 +3106,13 @@ section[id],
   border-color: var(--c-coral);
 }
 
-.toast-notice.show { transform: translate3d(-50%, 0, 0); }
+.toast-notice.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate3d(-50%, 0, 0);
+  transition-delay: 0s;
+}
 
 /* ==========================================================================
    MOUVEMENT RÉDUIT : pas de flottement, parallaxe, pulsation ni compteur ;
