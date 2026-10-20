@@ -1190,129 +1190,7 @@ section {
   color: var(--c-night-blue);
 }
 
-/* --- INTERACTIVE MINI ATELIER DE L'ALPHABET (BONUS WOW) --- */
-.alphabet-workshop {
-  background-color: #FAF8F2;
-  border-top: 1px dashed rgba(19, 35, 122, 0.12);
-  border-bottom: 1px dashed rgba(19, 35, 122, 0.12);
-  text-align: center;
-}
 
-.alphabet-grid {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 14px;
-  max-width: 900px;
-  margin: 0 auto 30px auto;
-}
-
-@media (max-width: 991px) {
-  .alphabet-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (max-width: 576px) {
-  .alphabet-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-  }
-}
-
-.letter-btn {
-  background-color: #FFFFFF;
-  border: 2px solid rgba(19, 35, 122, 0.1);
-  border-radius: var(--radius-lg);
-  padding: 16px 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all var(--trans-bounce);
-  box-shadow: 0 3px 10px rgba(19, 35, 122, 0.05);
-}
-
-.letter-btn:hover,
-.letter-btn.active {
-  transform: translateY(-6px) scale(1.05);
-  border-color: var(--c-coral);
-  box-shadow: 0 10px 24px rgba(232, 104, 90, 0.25);
-  background-color: var(--c-cream);
-}
-
-.letter-char {
-  font-family: var(--font-arabic);
-  font-size: 2.1rem;
-  font-weight: 800;
-  color: var(--c-night-blue);
-  line-height: 1.1;
-}
-
-.letter-name {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--c-blue);
-  margin-top: 4px;
-  text-transform: uppercase;
-}
-
-.alphabet-feedback-box {
-  background-color: #FFFFFF;
-  border-radius: var(--radius-xl);
-  padding: 24px 30px;
-  max-width: 640px;
-  margin: 0 auto;
-  box-shadow: var(--shadow-card);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  border: 2px solid var(--c-lavender);
-}
-
-@media (max-width: 576px) {
-  .alphabet-feedback-box {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-.feedback-left {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.sound-play-badge {
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  background-color: var(--c-coral-light);
-  color: var(--c-coral);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
-  cursor: pointer;
-  transition: transform var(--trans-fast);
-  border: 2px solid var(--c-coral);
-  flex-shrink: 0;
-}
-
-.sound-play-badge:hover {
-  transform: scale(1.1);
-}
-
-.feedback-details h4 {
-  font-size: 1.25rem;
-  margin-bottom: 3px;
-}
-
-.feedback-details p {
-  font-size: 0.92rem;
-  color: var(--c-text-muted);
-}
 
 /* --- POURQUOI SIHSCOOL SECTION --- */
 .why-section {
@@ -1459,150 +1337,199 @@ section {
   line-height: 1.6;
 }
 
-/* --- PRICING / TARIFS SECTION --- */
+/* --- PRICING / TARIFS SECTION (OFFRE UNIQUE 30€/MOIS) --- */
 .pricing-section {
-  background-color: #FAF8F2;
+  background: linear-gradient(180deg, #FAF8F2 0%, #FFFFFF 100%);
+  padding: 90px 0;
 }
 
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  align-items: stretch;
+.single-offer-wrapper {
+  max-width: 840px;
+  margin: 0 auto;
 }
 
-@media (max-width: 991px) {
-  .pricing-grid {
-    grid-template-columns: 1fr;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-}
-
-.pricing-card {
-  background-color: var(--c-cream);
-  border-radius: var(--radius-xl);
-  padding: 38px 30px;
-  border: 2px solid rgba(19, 35, 122, 0.08);
-  box-shadow: var(--shadow-subtle);
-  display: flex;
-  flex-direction: column;
+.single-offer-card {
+  background: linear-gradient(180deg, #FFFFFF 0%, #FCF7EB 100%);
+  border-radius: 32px;
+  border: 3px solid var(--c-coral);
+  box-shadow: 0 24px 70px rgba(232, 104, 90, 0.2), 0 4px 20px rgba(19, 35, 122, 0.08);
+  padding: 55px 44px;
   position: relative;
-  transition: all var(--trans-normal);
+  text-align: center;
+  transition: transform var(--trans-normal), box-shadow var(--trans-normal);
 }
 
-.pricing-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-card);
+.single-offer-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 80px rgba(232, 104, 90, 0.25), 0 8px 25px rgba(19, 35, 122, 0.1);
 }
 
-.pricing-card.featured {
-  background-color: #FFFFFF;
-  border-color: var(--c-coral);
-  box-shadow: 0 16px 45px rgba(232, 104, 90, 0.16);
-  transform: scale(1.03);
-  z-index: 2;
-}
-
-@media (max-width: 991px) {
-  .pricing-card.featured {
-    transform: none;
+@media (max-width: 768px) {
+  .single-offer-card {
+    padding: 45px 22px;
   }
 }
 
 .featured-ribbon {
   position: absolute;
-  top: -15px;
+  top: -18px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: var(--c-coral);
+  background: linear-gradient(135deg, var(--c-coral) 0%, #D45042 100%);
   color: #FFFFFF;
-  font-size: 0.8rem;
-  font-weight: 700;
+  font-size: 0.85rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 6px 20px;
+  letter-spacing: 0.06em;
+  padding: 8px 24px;
   border-radius: var(--radius-pill);
-  box-shadow: 0 4px 14px rgba(232, 104, 90, 0.35);
+  box-shadow: 0 6px 20px rgba(232, 104, 90, 0.4);
   white-space: nowrap;
 }
 
-.pricing-header {
-  text-align: center;
-  padding-bottom: 24px;
-  border-bottom: 1px solid rgba(19, 35, 122, 0.08);
-  margin-bottom: 24px;
+.single-offer-header {
+  border-bottom: 2px dashed rgba(19, 35, 122, 0.12);
+  padding-bottom: 28px;
+  margin-bottom: 35px;
 }
 
-.pricing-header h3 {
-  font-size: 1.5rem;
-  margin-bottom: 6px;
+.single-offer-header h3 {
+  font-size: 2.1rem;
+  color: var(--c-night-blue);
+  margin-bottom: 10px;
+  font-weight: 800;
 }
 
-.pricing-header .plan-subtitle {
-  font-size: 0.9rem;
+.single-offer-header .plan-subtitle {
+  font-size: 1.05rem;
   color: var(--c-text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
 }
 
-.price-display {
-  margin: 20px 0 10px 0;
+.price-display-hero {
   display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: 4px;
+  gap: 6px;
+  margin: 24px 0 14px 0;
 }
 
-.price-val {
-  font-size: 2.8rem;
-  font-weight: 800;
-  color: var(--c-night-blue);
+.price-display-hero .price-val {
+  font-size: 4.4rem;
+  font-weight: 900;
+  color: var(--c-coral);
   line-height: 1;
+  letter-spacing: -0.02em;
 }
 
-.price-period {
+.price-display-hero .price-period {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--c-blue);
+}
+
+.price-commitment-pill {
+  display: inline-block;
+  background-color: var(--c-yellow);
+  color: var(--c-night-blue);
+  font-weight: 700;
   font-size: 0.95rem;
-  color: var(--c-text-muted);
-  font-weight: 500;
+  padding: 8px 22px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 3px 10px rgba(253, 230, 120, 0.5);
 }
 
-.pricing-features {
-  list-style: none;
-  margin-bottom: 30px;
-  flex-grow: 1;
+.offer-features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 30px;
+  text-align: left;
+  margin-bottom: 40px;
 }
 
-.pricing-features li {
+@media (max-width: 680px) {
+  .offer-features-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.offer-feature-item {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  font-size: 0.95rem;
-  color: var(--c-night-blue);
-  margin-bottom: 14px;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(19, 35, 122, 0.06);
 }
 
-.pricing-features li svg {
-  color: var(--c-violet);
+.offer-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--c-lavender);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
   flex-shrink: 0;
-  margin-top: 3px;
 }
 
-.pricing-card.featured .pricing-features li svg {
-  color: var(--c-coral);
-}
-
-.pricing-footer {
-  margin-top: auto;
-}
-
-.pricing-guarantee-note {
-  text-align: center;
-  margin-top: 40px;
-  font-size: 0.95rem;
-  color: var(--c-text-muted);
-}
-
-.pricing-guarantee-note strong {
+.offer-feature-item strong {
+  display: block;
+  font-size: 1rem;
   color: var(--c-night-blue);
+  margin-bottom: 2px;
+  font-weight: 700;
+}
+
+.offer-feature-item p {
+  font-size: 0.88rem;
+  color: var(--c-text-muted);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.single-offer-cta-box {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.btn-glow {
+  position: relative;
+  animation: pulseGlow 2.5s infinite;
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(232, 104, 90, 0.55), 0 8px 24px rgba(232, 104, 90, 0.35);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(232, 104, 90, 0), 0 12px 28px rgba(232, 104, 90, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(232, 104, 90, 0), 0 8px 24px rgba(232, 104, 90, 0.35);
+  }
+}
+
+.cta-micro-note {
+  font-size: 0.9rem;
+  color: var(--c-text-muted);
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cta-micro-note span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 /* --- TESTIMONIALS / TEMOIGNAGES SECTION --- */
