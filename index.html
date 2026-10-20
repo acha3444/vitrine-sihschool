@@ -2,41 +2,82 @@
 <html lang="fr" dir="ltr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>SihSchool | École d'Arabe en Ligne pour Femmes et Enfants - Méthode Nourania</title>
   <meta name="description" content="Apprenez l'arabe avec sérénité et douceur chez SihSchool. Cours d'arabe en ligne 100% bienveillants pour femmes et enfants : méthode Nourania pas à pas, arabe littéraire et éveil. Réservez votre cours d'essai offert !">
   <meta name="keywords" content="cours d'arabe en ligne, méthode Nourania, cours d'arabe pour femmes, cours d'arabe pour enfants, apprendre à lire l'arabe, arabe littéraire, sihschool, ecole arabe">
   <meta name="author" content="SihSchool">
-  
+  <link rel="canonical" href="https://sihschool.com/">
+
   <!-- Open Graph / Meta Réseaux -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="SihSchool - École d'Arabe en Ligne pour Femmes & Enfants">
   <meta property="og:description" content="Apprenez l'arabe avec sérénité, à votre rythme. Méthode Nourania, cours interactifs bienveillants et suivi personnalisé.">
   <meta property="og:url" content="https://sihschool.com">
   <meta property="og:image" content="https://sihschool.com/assets/images/hero-art.jpg">
-  
+
   <meta name="theme-color" content="#13237A">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="alternate icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 150 184%22 width=%22150%22 height=%22184%22><path d=%22M 0 75 A 75 75 0 0 1 150 75 L 150 164 A 20 20 0 0 1 130 184 L 20 184 A 20 20 0 0 1 0 164 Z%22 fill=%22%2313237A%22/><path d=%22M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0 Z%22 transform=%22translate(64, 28) scale(0.92)%22 fill=%22%23D4A63A%22/><text x=%2275%22 y=%22146%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%22108%22 font-weight=%22700%22 fill=%22%23D4A63A%22>س</text></svg>">
-  
-  <!-- Google Fonts: Baloo Bhaijaan 2, Poppins & Cairo -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&family=Cairo:wght@500;600;700;800;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
-  
-  <!-- Cloudflare Turnstile Anti-Spam (gratuit et sans puzzle) -->
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+
+  <!-- Polices auto-hébergées (/fonts) : préchargement des graisses principales -->
+  <link rel="preload" href="fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/baloo-bhaijaan-2-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
+  <!-- Sans JavaScript, le contenu reste visible -->
+  <noscript><style>.reveal{opacity:1!important}.marker::after{transform:rotate(-1.2deg)!important}.floating-whatsapp-widget{opacity:1!important;transform:none!important;visibility:visible!important;pointer-events:auto!important}</style></noscript>
+
+  <!-- Turnstile est chargé à la demande par main.js quand le formulaire approche de l'écran -->
+  <script src="js/main.js" defer></script>
 </head>
 <body>
 
+  <a class="skip-link" href="#main">Aller au contenu</a>
+
+  <!-- Barre de progression de lecture -->
+  <div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
+
+  <!-- ================= SPRITE D'ICÔNES SVG ================= -->
+  <svg class="icon-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24"><path d="m16 13 5.22 3.48a.5.5 0 0 0 .78-.42V7.87a.5.5 0 0 0-.75-.43L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></symbol>
+    <symbol id="i-laptop" viewBox="0 0 24 24"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></symbol>
+    <symbol id="i-message" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M11.53 2.3a.53.53 0 0 1 .94 0l2.31 4.68a2.12 2.12 0 0 0 1.6 1.16l5.17.76a.53.53 0 0 1 .29.9l-3.74 3.64a2.12 2.12 0 0 0-.61 1.88l.88 5.14a.53.53 0 0 1-.77.56l-4.62-2.43a2.12 2.12 0 0 0-1.97 0L6.4 21.01a.53.53 0 0 1-.77-.56l.88-5.14a2.12 2.12 0 0 0-.61-1.88L2.16 9.8a.53.53 0 0 1 .3-.91l5.16-.75a2.12 2.12 0 0 0 1.6-1.16z"/></symbol>
+    <symbol id="i-hourglass" viewBox="0 0 24 24"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.17a2 2 0 0 0-.59-1.42L12 12l-4.41 4.41A2 2 0 0 0 7 17.83V22"/><path d="M7 2v4.17a2 2 0 0 0 .59 1.42L12 12l4.41-4.41A2 2 0 0 0 17 6.17V2"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+    <symbol id="i-sprout" viewBox="0 0 24 24"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M21.42 10.92a1 1 0 0 0-.02-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></symbol>
+    <symbol id="i-gem" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><path d="M12.59 2.59A2 2 0 0 0 11.17 2H4a2 2 0 0 0-2 2v7.17a2 2 0 0 0 .59 1.42l8.7 8.7a2.43 2.43 0 0 0 3.42 0l6.58-6.58a2.43 2.43 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r="1"/></symbol>
+    <symbol id="i-euro" viewBox="0 0 24 24"><path d="M4 10h12"/><path d="M4 14h9"/><path d="M19 6a7.7 7.7 0 0 0-5.2-2A7.9 7.9 0 0 0 6 12c0 4.4 3.5 8 7.8 8 2 0 3.8-.8 5.2-2"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></symbol>
+    <symbol id="i-chat-check" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="M11 4.7a.7.7 0 0 0-1.2-.5L6.41 7.59A1.4 1.4 0 0 1 5.42 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.42a1.4 1.4 0 0 1 1 .41l3.38 3.39a.7.7 0 0 0 1.2-.5z"/><path d="M16 9a5 5 0 0 1 0 6"/><path d="M19.36 18.36a9 9 0 0 0 0-12.72"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="M5 12h14"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.4-1.76-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.32-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.89.87-.89 2.12s.91 2.46 1.04 2.63c.12.17 1.79 2.74 4.34 3.84.61.26 1.08.42 1.45.54.61.19 1.17.17 1.61.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></symbol>
+    <symbol id="i-tiktok" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.86.12V9.42a6.34 6.34 0 0 0-.86-.06 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 9.79 5.34c3.48-2.32 3.44-5.46 3.44-5.46V8.6a8.28 8.28 0 0 0 3.22 1.45V6.69z"/></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0 Z"/></symbol>
+  </svg>
+
   <!-- ================= TOP ANNOUNCEMENT BAR ================= -->
   <aside class="top-bar" aria-label="Bandeau d'information">
-    <div class="container">
-      ✨ <strong>Nouvelle session :</strong> Les inscriptions sont ouvertes • Cours d'essai offert sans engagement !
-      <a href="#contact">Réserver ma place &rarr;</a>
+    <div class="container top-bar-inner">
+      <p>✨ <strong>Nouvelle session :</strong> Les inscriptions sont ouvertes<span class="top-bar-extra"> • Cours d'essai offert sans engagement !</span>
+      <a href="#contact">Réserver ma place&nbsp;&rarr;</a></p>
     </div>
   </aside>
 
@@ -45,80 +86,93 @@
     <div class="container nav-container">
       <!-- Brand Logo -->
       <a href="index.html" class="brand-logo" aria-label="SihSchool - Accueil">
-        <div class="logo-emblem" aria-hidden="true">
+        <span class="logo-emblem" aria-hidden="true">
           <svg class="emblem-star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0 Z"/></svg>
-          <span class="emblem-char" lang="ar">س</span>
-        </div>
-        <div class="logo-text-group">
+          <span class="emblem-char" lang="ar" dir="rtl">س</span>
+        </span>
+        <span class="logo-text-group">
           <span class="logo-name">Sih<span class="logo-name-accent">School</span></span>
           <span class="logo-tagline">ÉCOLE D'ARABE EN LIGNE</span>
-        </div>
+        </span>
       </a>
 
-      <!-- Desktop Nav Menu -->
-      <nav aria-label="Navigation principale">
+      <!-- Navigation (barre sur ordinateur, panneau plein écran sur mobile) -->
+      <nav class="main-nav" id="mainNav" aria-label="Navigation principale">
         <ul class="nav-menu" id="mainNavMenu">
-          <li><a href="#accueil" class="nav-link">Accueil</a></li>
-          <li><a href="#formations" class="nav-link">Nos Formations</a></li>
-          <li><a href="#femmes" class="nav-link">Espace Femmes</a></li>
-          <li><a href="#enfants" class="nav-link">Espace Enfants</a></li>
-          <li><a href="#atelier-alphabet" class="nav-link">Mini-Atelier</a></li>
-          <li><a href="#pourquoi" class="nav-link">Pourquoi nous ?</a></li>
-          <li><a href="#tarifs" class="nav-link">Tarifs</a></li>
-          <li><a href="#faq" class="nav-link">FAQ</a></li>
-          <li class="mobile-nav-cta">
-            <a href="#contact" class="btn btn-coral" style="width: 100%;">Réserver un cours d'essai</a>
-          </li>
+          <li style="--i:0"><a href="#accueil" class="nav-link">Accueil</a></li>
+          <li style="--i:1"><a href="#formations" class="nav-link">Nos Formations</a></li>
+          <li style="--i:2"><a href="#femmes" class="nav-link">Espace Femmes</a></li>
+          <li style="--i:3"><a href="#enfants" class="nav-link">Espace Enfants</a></li>
+          <li style="--i:4"><a href="#atelier-alphabet" class="nav-link">Mini-Atelier</a></li>
+          <li style="--i:5"><a href="#pourquoi" class="nav-link">Pourquoi nous ?</a></li>
+          <li style="--i:6"><a href="#tarifs" class="nav-link">Tarifs</a></li>
+          <li style="--i:7"><a href="#faq" class="nav-link">FAQ</a></li>
         </ul>
+        <div class="mobile-nav-cta" style="--i:8">
+          <a href="#contact" class="btn btn-coral btn-block">
+            <span>Réserver mon cours d'essai</span>
+            <svg class="icon btn-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+        </div>
       </nav>
 
       <!-- Desktop Actions -->
-      <div class="nav-actions">
-        <a href="#contact" class="btn btn-coral btn-sm btn-glow">Cours d'essai offert</a>
+      <div class="nav-actions nav-cta">
+        <a href="#contact" class="btn btn-coral btn-sm">Cours d'essai offert</a>
       </div>
 
       <!-- Mobile Hamburger Toggle -->
-      <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="mainNavMenu">
+      <button class="mobile-toggle" id="mobileMenuBtn" type="button" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="mainNav">
         <span></span>
         <span></span>
         <span></span>
       </button>
     </div>
   </header>
+  <div class="nav-overlay" id="navOverlay" hidden></div>
+
+  <main id="main" tabindex="-1">
 
   <!-- ================= HERO SECTION ================= -->
   <section class="hero-section" id="accueil">
-    <!-- Floating background decorative Arabic letters -->
-    <div class="arabic-letter-particle letter-1" aria-hidden="true">أ</div>
-    <div class="arabic-letter-particle letter-2" aria-hidden="true">ب</div>
-    <div class="arabic-letter-particle letter-3" aria-hidden="true">ت</div>
-    <div class="arabic-letter-particle letter-4" aria-hidden="true">ث</div>
+    <!-- Lettres arabes décoratives et étoiles dorées -->
+    <div class="hero-decor" aria-hidden="true">
+      <span class="arabic-letter-particle letter-1" lang="ar" dir="rtl">أ</span>
+      <span class="arabic-letter-particle letter-2" lang="ar" dir="rtl">ب</span>
+      <span class="arabic-letter-particle letter-3" lang="ar" dir="rtl">ت</span>
+      <span class="arabic-letter-particle letter-4" lang="ar" dir="rtl">ث</span>
+      <svg class="hero-star star-1"><use href="#i-sparkle"/></svg>
+      <svg class="hero-star star-2"><use href="#i-sparkle"/></svg>
+      <svg class="hero-star star-3"><use href="#i-sparkle"/></svg>
+      <svg class="hero-star star-4"><use href="#i-sparkle"/></svg>
+      <svg class="hero-star star-5"><use href="#i-sparkle"/></svg>
+    </div>
 
     <div class="container">
       <div class="hero-grid">
         <!-- Hero Text Content -->
         <div class="hero-content">
-          <div class="hero-tag">
-            <span class="sparkle">🌸</span>
+          <div class="hero-tag hero-in" style="--d:0">
+            <span class="sparkle" aria-hidden="true">🌸</span>
             <span>Pour Femmes & Enfants • 100% Bienveillant</span>
           </div>
 
-          <div class="hero-arabic-welcome" aria-hidden="true">
+          <div class="hero-arabic-welcome hero-in" style="--d:1" lang="ar" dir="rtl" aria-hidden="true">
             مَرْحَبًا بِكُمْ فِي سِيه سْكُول
           </div>
 
           <h1 class="hero-title">
-            Apprenez à lire l'arabe avec la Méthode Nourania, <span class="highlight-yellow">en direct sur Zoom</span>
+            <span class="w" style="--i:0">Apprenez</span> <span class="w" style="--i:1">à</span> <span class="w" style="--i:2">lire</span> <span class="w" style="--i:3">l'arabe</span> <span class="w" style="--i:4">avec</span> <span class="w" style="--i:5">la</span> <span class="w" style="--i:6">Méthode</span> <span class="w" style="--i:7">Nourania,</span> <span class="highlight-yellow"><span class="w" style="--i:8">en</span> <span class="w" style="--i:9">direct</span> <span class="w" style="--i:10">sur</span> <span class="w" style="--i:11">Zoom</span></span>
           </h1>
 
-          <p class="hero-description">
+          <p class="hero-description hero-in" style="--d:4">
             La méthode incontournable pour <strong>tous les âges</strong> (femmes et enfants dès 5 ans). <strong>1 cours de 1h30 par semaine dès 30 € / mois</strong> sans engagement. Passez de zéro à une lecture fluide et autonome dans un cadre bienveillant et structuré.
           </p>
 
-          <div class="hero-cta-group">
-            <a href="#contact" class="btn btn-coral btn-lg btn-glow">
+          <div class="hero-cta-group hero-in" style="--d:5">
+            <a href="#contact" class="btn btn-coral btn-lg btn-pulse">
               <span>Réserver mon cours d'essai offert</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              <svg class="icon btn-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
             </a>
             <a href="#tarifs" class="btn btn-secondary btn-lg">
               <span>Découvrir les formules</span>
@@ -126,39 +180,43 @@
           </div>
 
           <!-- Trust Badges Row -->
-          <div class="hero-trust-row">
-            <div class="trust-item">
-              <span class="trust-icon">🔥</span>
+          <ul class="hero-trust-row hero-in" style="--d:6">
+            <li class="trust-item">
+              <span class="trust-icon" aria-hidden="true"><svg class="icon"><use href="#i-tag"/></svg></span>
               <span><strong>Dès 30 € / mois</strong> sans engagement</span>
-            </div>
-            <div class="trust-item">
-              <span class="trust-icon">💻</span>
+            </li>
+            <li class="trust-item">
+              <span class="trust-icon" aria-hidden="true"><svg class="icon"><use href="#i-video"/></svg></span>
               <span><strong>1h30 / semaine</strong> sur Zoom</span>
-            </div>
-            <div class="trust-item">
-              <span class="trust-icon">👥</span>
+            </li>
+            <li class="trust-item">
+              <span class="trust-icon" aria-hidden="true"><svg class="icon"><use href="#i-users"/></svg></span>
               <span><strong>3 à 5 élèves maximum</strong> par groupe</span>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
 
         <!-- Hero Visual Media with Arch Frame -->
         <div class="hero-media-wrapper">
-          <div class="arch-frame">
-            <img src="assets/images/hero-art.jpg" alt="Illustration chaleureuse et lumineuse d'apprentissage de l'arabe, livre ouvert et lettres arabes dorées flottantes" width="600" height="450" loading="eager">
+          <div class="arch-frame hero-media-in">
+            <picture>
+              <source type="image/avif" srcset="assets/images/hero-art-400.avif 400w, assets/images/hero-art-800.avif 800w, assets/images/hero-art-1200.avif 1200w" sizes="(min-width: 560px) 480px, calc(100vw - 48px)">
+              <source type="image/webp" srcset="assets/images/hero-art-400.webp 400w, assets/images/hero-art-800.webp 800w, assets/images/hero-art-1200.webp 1200w" sizes="(min-width: 560px) 480px, calc(100vw - 48px)">
+              <img src="assets/images/hero-art-800.webp" alt="Illustration chaleureuse et lumineuse d'apprentissage de l'arabe, livre ouvert et lettres arabes dorées flottantes" width="1200" height="896" loading="eager" fetchpriority="high" decoding="async">
+            </picture>
           </div>
 
           <!-- Floating Badges on Illustration -->
-          <div class="floating-badge badge-top-left" aria-hidden="true">
-            <div class="badge-icon">📖</div>
+          <div class="floating-badge badge-top-left hero-media-in" aria-hidden="true">
+            <div class="badge-icon"><svg class="icon"><use href="#i-book"/></svg></div>
             <div>
               <div class="badge-title">Méthode Nourania</div>
               <div class="badge-sub">Lecture fluide pas à pas</div>
             </div>
           </div>
 
-          <div class="floating-badge badge-bottom-right" aria-hidden="true">
-            <div class="badge-icon">💎</div>
+          <div class="floating-badge badge-bottom-right hero-media-in" aria-hidden="true">
+            <div class="badge-icon badge-icon-gold"><svg class="icon"><use href="#i-gem"/></svg></div>
             <div>
               <div class="badge-title">Formule Groupe</div>
               <div class="badge-sub">30 € / mois • Direct Zoom</div>
@@ -172,43 +230,35 @@
   <!-- ================= REASSURANCE STATS BAR ================= -->
   <section class="stats-bar" aria-label="Points clés de réassurance">
     <div class="container">
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-icon" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
+      <div class="stats-grid" data-stagger>
+        <div class="stat-card reveal">
+          <div class="stat-icon" aria-hidden="true"><svg class="icon"><use href="#i-euro"/></svg></div>
           <div class="stat-info">
-            <h4>30 € / Mois</h4>
+            <h2 class="stat-title"><span class="count" data-count="30">30</span> € / Mois</h2>
             <p>Formule groupe sans engagement</p>
           </div>
         </div>
 
-        <div class="stat-card">
-          <div class="stat-icon" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/></svg>
-          </div>
+        <div class="stat-card reveal">
+          <div class="stat-icon" aria-hidden="true"><svg class="icon"><use href="#i-calendar"/></svg></div>
           <div class="stat-info">
-            <h4>1h30 / Semaine</h4>
+            <h2 class="stat-title"><span class="count" data-count="90" data-format="duration">1h30</span> / Semaine</h2>
             <p>En direct sur Zoom & interactif</p>
           </div>
         </div>
 
-        <div class="stat-card">
-          <div class="stat-icon" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-          </div>
+        <div class="stat-card reveal">
+          <div class="stat-icon" aria-hidden="true"><svg class="icon"><use href="#i-users"/></svg></div>
           <div class="stat-info">
-            <h4>3 à 5 Élèves Max</h4>
+            <h2 class="stat-title"><span class="count" data-count="3">3</span> à <span class="count" data-count="5">5</span> Élèves Max</h2>
             <p>Petits groupes intimistes</p>
           </div>
         </div>
 
-        <div class="stat-card">
-          <div class="stat-icon" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
+        <div class="stat-card reveal">
+          <div class="stat-icon" aria-hidden="true"><svg class="icon"><use href="#i-shield"/></svg></div>
           <div class="stat-info">
-            <h4>Méthode Nourania</h4>
+            <h2 class="stat-title">Méthode Nourania</h2>
             <p>Apprendre à lire pas à pas</p>
           </div>
         </div>
@@ -217,31 +267,31 @@
   </section>
 
   <!-- ================= SECTION FORMATIONS ================= -->
-  <section class="formations-section" id="formations">
+  <section class="formations-section" id="formations" aria-labelledby="formations-title">
     <div class="container">
-      <div class="section-header reveal-on-scroll">
+      <div class="section-header reveal">
         <span class="section-badge">
           <span>📚 Nos Cursus Pédagogiques</span>
-          <span class="ar-badge">بَرَامِجُنَا</span>
+          <span class="ar-badge" lang="ar" dir="rtl">بَرَامِجُنَا</span>
         </span>
-        <h2>Des formations pensées pour chaque étape</h2>
+        <h2 id="formations-title">Des formations pensées pour <span class="marker">chaque étape</span></h2>
         <p>Que vous débutiez de zéro ou que vous souhaitiez enrichir vos connaissances, trouvez le parcours adapté à vos objectifs et à votre rythme.</p>
       </div>
 
       <!-- Filter Buttons -->
-      <div class="course-filter-nav reveal-on-scroll" role="tablist" aria-label="Filtrer les formations">
-        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">Toutes les formations</button>
-        <button class="filter-btn" data-filter="women" role="tab" aria-selected="false">Espace Femmes</button>
-        <button class="filter-btn" data-filter="kids" role="tab" aria-selected="false">Espace Enfants</button>
+      <div class="course-filter-nav reveal" role="group" aria-label="Filtrer les formations">
+        <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">Toutes les formations</button>
+        <button type="button" class="filter-btn" data-filter="women" aria-pressed="false">Espace Femmes</button>
+        <button type="button" class="filter-btn" data-filter="kids" aria-pressed="false">Espace Enfants</button>
       </div>
 
       <!-- Courses Grid : Exactement les 3 formations officielles -->
-      <div class="courses-grid" id="coursesGrid">
+      <div class="courses-grid" id="coursesGrid" data-stagger>
         <!-- Formation 1: Nourania -->
-        <article class="course-card reveal-on-scroll" data-category="both">
+        <article class="course-card reveal" data-category="both">
           <div class="card-top-meta">
-            <span class="audience-badge badge-both">Femmes & Enfants dès 5 ans</span>
-            <div class="arabic-pill" aria-hidden="true">ن</div>
+            <span class="audience-badge badge-both">Femmes & Enfants dès <span class="count" data-count="5">5</span> ans</span>
+            <span class="arabic-pill card-letter" lang="ar" dir="rtl" aria-hidden="true">ن</span>
           </div>
           <h3>Méthode Nourania</h3>
           <p class="course-desc">
@@ -249,31 +299,31 @@
           </p>
           <ul class="course-features-list">
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
               <span><strong>Niveau :</strong> Débutant complet à intermédiaire</span>
             </li>
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
               <span><strong>Format :</strong> Sur Zoom • 3 à 5 élèves maximum ou particulier</span>
             </li>
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
               <span><strong>Rythme :</strong> 1 cours de 1h30 par semaine</span>
             </li>
           </ul>
           <div class="course-card-footer">
-            <button class="btn btn-secondary open-course-details" data-course="nourania" style="width: 100%;">
+            <button type="button" class="btn btn-secondary btn-block open-course-details" data-course="nourania" aria-haspopup="dialog">
               <span>En savoir plus</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              <svg class="icon btn-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
             </button>
           </div>
         </article>
 
         <!-- Formation 2: Arabe Littéraire -->
-        <article class="course-card reveal-on-scroll" data-category="women">
+        <article class="course-card reveal" data-category="women">
           <div class="card-top-meta">
             <span class="audience-badge badge-women">Espace Femmes</span>
-            <div class="arabic-pill" aria-hidden="true">ع</div>
+            <span class="arabic-pill card-letter" lang="ar" dir="rtl" aria-hidden="true">ع</span>
           </div>
           <h3>Arabe Littéraire (Fus'ha)</h3>
           <p class="course-desc">
@@ -281,31 +331,31 @@
           </p>
           <ul class="course-features-list">
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
               <span><strong>Niveau :</strong> Sait déjà déchiffrer les lettres arabes</span>
             </li>
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
               <span><strong>Format :</strong> Sur Zoom • 3 à 5 élèves maximum ou particulier</span>
             </li>
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
               <span><strong>Rythme :</strong> 1 cours de 1h30 par semaine</span>
             </li>
           </ul>
           <div class="course-card-footer">
-            <button class="btn btn-secondary open-course-details" data-course="fusha" style="width: 100%;">
+            <button type="button" class="btn btn-secondary btn-block open-course-details" data-course="fusha" aria-haspopup="dialog">
               <span>En savoir plus</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              <svg class="icon btn-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
             </button>
           </div>
         </article>
 
         <!-- Formation 3: Éveil & Arabe Enfants -->
-        <article class="course-card reveal-on-scroll" data-category="kids">
+        <article class="course-card reveal" data-category="kids">
           <div class="card-top-meta">
             <span class="audience-badge badge-kids">Espace Enfants</span>
-            <div class="arabic-pill" aria-hidden="true">ب</div>
+            <span class="arabic-pill card-letter" lang="ar" dir="rtl" aria-hidden="true">ب</span>
           </div>
           <h3>Éveil & Arabe Enfants</h3>
           <p class="course-desc">
@@ -313,99 +363,91 @@
           </p>
           <ul class="course-features-list">
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
               <span><strong>Âge :</strong> Enfants dès 5 ans (groupes d'âge adaptés)</span>
             </li>
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
               <span><strong>Format :</strong> Sur Zoom • 3 à 5 élèves maximum</span>
             </li>
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
               <span><strong>Rythme :</strong> 1 cours de 1h30 par semaine (avec pauses actives)</span>
             </li>
           </ul>
           <div class="course-card-footer">
-            <button class="btn btn-secondary open-course-details" data-course="eveil-enfants" style="width: 100%;">
+            <button type="button" class="btn btn-secondary btn-block open-course-details" data-course="eveil-enfants" aria-haspopup="dialog">
               <span>En savoir plus</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              <svg class="icon btn-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
             </button>
           </div>
         </article>
       </div>
 
-      <!-- Mobile Swipe Indicator -->
-      <div class="mobile-swipe-indicator" data-for="coursesGrid" aria-hidden="true">
-        <span class="swipe-hint">Glissez pour voir les 3 formations ↔</span>
-        <div class="swipe-dots">
-          <span class="swipe-dot active"></span>
-          <span class="swipe-dot"></span>
-          <span class="swipe-dot"></span>
-        </div>
-      </div>
-
-      <div style="text-align: center; margin-top: 40px;" class="reveal-on-scroll">
-        <a href="#tarifs" class="btn btn-coral btn-lg btn-glow">
+      <div class="section-cta reveal">
+        <a href="#tarifs" class="btn btn-coral btn-lg">
           <span>Consulter nos 2 formules (Dès 30 € / mois)</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          <svg class="icon btn-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
         </a>
       </div>
     </div>
   </section>
 
   <!-- ================= SECTION ESPACE FEMMES ================= -->
-  <section class="women-section pattern-overlay" id="femmes">
+  <section class="women-section has-sep sep-wave" id="femmes" aria-labelledby="femmes-title">
     <div class="container">
       <div class="split-layout">
-        <!-- Text Left -->
-        <div class="split-content reveal-on-scroll">
-          <span class="section-badge" style="background-color: #FFFFFF; color: var(--c-night-blue);">
+        <!-- Text -->
+        <div class="split-content reveal">
+          <span class="section-badge badge-white">
             <span>🌸 Espace Féminin Dédié</span>
-            <span class="ar-badge">قِسْمُ النِّسَاءِ</span>
+            <span class="ar-badge" lang="ar" dir="rtl">قِسْمُ النِّسَاءِ</span>
           </span>
-          <h2>Un havre d'apprentissage bienveillant entre femmes</h2>
+          <h2 id="femmes-title">Un havre d'apprentissage <span class="marker">bienveillant</span> entre femmes</h2>
           <p>
             Parce que chaque femme mène de front mille responsabilités, SihSchool propose un cadre d'étude chaleureux, respectueux et adapté à votre rythme. Osez vous tromper, posez toutes vos questions sans réserve et progressez avec sérénité.
           </p>
 
-          <div class="feature-benefits-list">
-            <div class="benefit-card">
-              <div class="benefit-icon-box" aria-hidden="true">🌷</div>
+          <ul class="feature-benefits-list" data-stagger>
+            <li class="benefit-card reveal">
+              <div class="benefit-icon-box" aria-hidden="true"><svg class="icon"><use href="#i-heart"/></svg></div>
               <div class="benefit-text">
-                <h4>100% entre femmes & enseignante bienveillante</h4>
+                <h3>100% entre femmes & enseignante bienveillante</h3>
                 <p>Un environnement intime et sécurisant, dispensé par Siham avec écoute et patience, attentive aux besoins de chaque soeur.</p>
               </div>
-            </div>
+            </li>
 
-            <div class="benefit-card">
-              <div class="benefit-icon-box" aria-hidden="true">💻</div>
+            <li class="benefit-card reveal">
+              <div class="benefit-icon-box" aria-hidden="true"><svg class="icon"><use href="#i-laptop"/></svg></div>
               <div class="benefit-text">
-                <h4>1h30 par semaine sur Zoom & replays</h4>
+                <h3>1h30 par semaine sur Zoom & replays</h3>
                 <p>Une séance hebdomadaire conviviale de 1h30 en direct sur Zoom (3 à 5 élèves maximum), avec replays accessibles 24h/24 pour réviser sans stress.</p>
               </div>
-            </div>
+            </li>
 
-            <div class="benefit-card">
-              <div class="benefit-icon-box" aria-hidden="true">📱</div>
+            <li class="benefit-card reveal">
+              <div class="benefit-icon-box" aria-hidden="true"><svg class="icon"><use href="#i-phone"/></svg></div>
               <div class="benefit-text">
-                <h4>Supports PDF clairs & suivi WhatsApp individuel</h4>
+                <h3>Supports PDF clairs & suivi WhatsApp individuel</h3>
                 <p>Fiches mémo synthétiques téléchargeables et échanges audio continus pour corriger votre prononciation entre les cours.</p>
               </div>
-            </div>
-          </div>
+            </li>
+          </ul>
 
-          <div>
-            <a href="#contact" class="btn btn-coral">
-              <span>Réserver mon cours d'essai femme</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
-          </div>
+          <a href="#contact" class="btn btn-coral btn-mobile-block">
+            <span>Réserver mon cours d'essai femme</span>
+            <svg class="icon btn-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
         </div>
 
-        <!-- Visual Right (Arch Image) -->
-        <div class="split-visual reveal-on-scroll">
+        <!-- Visual (Arch Image) -->
+        <div class="split-visual reveal">
           <div class="arch-visual-card">
-            <img src="assets/images/women-space.jpg" alt="Espace de travail apaisant et chaleureux avec ordinateur, thé parfumé, fleurs blanches et carnet de calligraphie arabe" width="550" height="480" loading="lazy">
+            <picture>
+              <source type="image/avif" srcset="assets/images/women-space-400.avif 400w, assets/images/women-space-800.avif 800w, assets/images/women-space-1200.avif 1200w" sizes="(min-width: 1024px) 560px, (min-width: 768px) 720px, calc(100vw - 32px)">
+              <source type="image/webp" srcset="assets/images/women-space-400.webp 400w, assets/images/women-space-800.webp 800w, assets/images/women-space-1200.webp 1200w" sizes="(min-width: 1024px) 560px, (min-width: 768px) 720px, calc(100vw - 32px)">
+              <img src="assets/images/women-space-800.webp" alt="Espace de travail apaisant et chaleureux avec ordinateur, thé parfumé, fleurs blanches et carnet de calligraphie arabe" width="1200" height="896" loading="lazy" decoding="async">
+            </picture>
           </div>
         </div>
       </div>
@@ -413,146 +455,146 @@
   </section>
 
   <!-- ================= SECTION ESPACE ENFANTS ================= -->
-  <section class="kids-section pattern-overlay" id="enfants">
+  <section class="kids-section has-sep sep-arch" id="enfants" aria-labelledby="enfants-title">
     <div class="container">
-      <div class="split-layout" style="grid-template-columns: 1fr 1fr;">
-        <!-- Visual Left (Kids Visual) -->
-        <div class="split-visual reveal-on-scroll" style="order: 2;">
+      <div class="split-layout split-reverse">
+        <!-- Visual (Kids Visual) -->
+        <div class="split-visual reveal">
           <div class="kids-visual-card">
-            <img src="assets/images/kids-space.jpg" alt="Espace d'apprentissage coloré et joyeux pour enfants avec cubes alphabet arabe, étoiles souriantes et livres d'histoires" width="550" height="480" loading="lazy">
+            <picture>
+              <source type="image/avif" srcset="assets/images/kids-space-400.avif 400w, assets/images/kids-space-800.avif 800w, assets/images/kids-space-1200.avif 1200w" sizes="(min-width: 1024px) 560px, (min-width: 768px) 720px, calc(100vw - 32px)">
+              <source type="image/webp" srcset="assets/images/kids-space-400.webp 400w, assets/images/kids-space-800.webp 800w, assets/images/kids-space-1200.webp 1200w" sizes="(min-width: 1024px) 560px, (min-width: 768px) 720px, calc(100vw - 32px)">
+              <img src="assets/images/kids-space-800.webp" alt="Espace d'apprentissage coloré et joyeux pour enfants avec cubes alphabet arabe, étoiles souriantes et livres d'histoires" width="1200" height="896" loading="lazy" decoding="async">
+            </picture>
           </div>
         </div>
 
-        <!-- Text Right -->
-        <div class="split-content reveal-on-scroll" style="order: 1;">
-          <span class="section-badge" style="background-color: #FFFFFF; color: var(--c-night-blue);">
+        <!-- Text -->
+        <div class="split-content reveal">
+          <span class="section-badge badge-white">
             <span>🎈 Pédagogie Positive & Éveil</span>
-            <span class="ar-badge">عَالَمُ الأَطْفَالِ</span>
+            <span class="ar-badge" lang="ar" dir="rtl">عَالَمُ الأَطْفَالِ</span>
           </span>
-          <h2>L'arabe devient un jeu d'enfant !</h2>
+          <h2 id="enfants-title">L'arabe devient un <span class="marker">jeu d'enfant</span> !</h2>
           <p>
             Apprendre une nouvelle langue doit être une fête. Nos cours pour enfants éveillent la curiosité naturelle, développent la fierté de reconnaître les lettres et transforment la découverte de l'arabe en un moment de pur plaisir.
           </p>
 
-          <div class="feature-benefits-list">
-            <div class="benefit-card kids-card-style">
-              <div class="benefit-icon-box" aria-hidden="true">⭐</div>
+          <ul class="feature-benefits-list" data-stagger>
+            <li class="benefit-card kids-card-style reveal">
+              <div class="benefit-icon-box" aria-hidden="true"><svg class="icon"><use href="#i-star"/></svg></div>
               <div class="benefit-text">
-                <h4>Pédagogie ludique & stimulante</h4>
+                <h3>Pédagogie ludique & stimulante</h3>
                 <p>Flashcards illustrées, comptines rythmées, mini-défis et gommettes d'encouragement pour garder les yeux pétillants.</p>
               </div>
-            </div>
+            </li>
 
-            <div class="benefit-card kids-card-style">
-              <div class="benefit-icon-box" aria-hidden="true">⏳</div>
+            <li class="benefit-card kids-card-style reveal">
+              <div class="benefit-icon-box" aria-hidden="true"><svg class="icon"><use href="#i-hourglass"/></svg></div>
               <div class="benefit-text">
-                <h4>1h30 par semaine rythmée et interactive sur Zoom</h4>
+                <h3>1h30 par semaine rythmée et interactive sur Zoom</h3>
                 <p>Une session hebdomadaire sur Zoom en petit groupe de 3 à 5 élèves maximum, alternant jeux de lettres, comptines et pauses actives.</p>
               </div>
-            </div>
+            </li>
 
-            <div class="benefit-card kids-card-style">
-              <div class="benefit-icon-box" aria-hidden="true">💌</div>
+            <li class="benefit-card kids-card-style reveal">
+              <div class="benefit-icon-box" aria-hidden="true"><svg class="icon"><use href="#i-mail"/></svg></div>
               <div class="benefit-text">
-                <h4>Carnet de suivi & retour régulier aux parents</h4>
+                <h3>Carnet de suivi & retour régulier aux parents</h3>
                 <p>Un bilan après chaque module pour vous partager les victoires de votre enfant et des activités ludiques à faire ensemble à la maison.</p>
               </div>
-            </div>
-          </div>
+            </li>
+          </ul>
 
-          <div>
-            <a href="#contact" class="btn btn-coral">
-              <span>Inscrire mon enfant à une séance découverte</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
-          </div>
+          <a href="#contact" class="btn btn-coral btn-mobile-block">
+            <span>Inscrire mon enfant à une séance découverte</span>
+            <svg class="icon btn-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ================= SECTION MINI-ATELIER ALPHABET (AUDIO NATIF MOBILE) ================= -->
-  <section class="alphabet-workshop" id="atelier-alphabet">
+  <!-- ================= SECTION MINI-ATELIER ALPHABET ================= -->
+  <section class="alphabet-workshop has-sep sep-wave" id="atelier-alphabet" aria-labelledby="atelier-title">
     <div class="container">
-      <div class="section-header reveal-on-scroll">
-        <span class="section-badge" style="background-color: var(--c-yellow); color: var(--c-night-blue);">
+      <div class="section-header reveal">
+        <span class="section-badge badge-sky">
           <span>🎵 Atelier Interactif</span>
-          <span class="ar-badge">تَعَلَّمِ الحُرُوفَ</span>
+          <span class="ar-badge" lang="ar" dir="rtl">تَعَلَّمِ الحُرُوفَ</span>
         </span>
-        <h2>Découvrez les premières lettres en direct</h2>
+        <h2 id="atelier-title">Découvrez les <span class="marker">premières lettres</span> en direct</h2>
         <p>Cliquez ou touchez une lettre arabe ci-dessous pour écouter sa véritable prononciation et découvrir une astuce mnémotechnique de la Méthode Nourania !</p>
       </div>
 
       <!-- Letters Grid -->
-      <div class="alphabet-grid reveal-on-scroll">
-        <button class="letter-btn active" data-letter="alif" aria-label="Lettre Alif">
-          <span class="letter-char">أ</span>
+      <div class="alphabet-grid reveal" role="group" aria-label="Lettres de l'alphabet arabe">
+        <button type="button" class="letter-btn active" data-letter="alif" aria-pressed="true" aria-controls="letterDetails" aria-label="Lettre Alif">
+          <span class="letter-char" lang="ar" dir="rtl">أ</span>
           <span class="letter-name">Alif</span>
         </button>
-        <button class="letter-btn" data-letter="ba" aria-label="Lettre Bâ">
-          <span class="letter-char">ب</span>
+        <button type="button" class="letter-btn" data-letter="ba" aria-pressed="false" aria-controls="letterDetails" aria-label="Lettre Bâ">
+          <span class="letter-char" lang="ar" dir="rtl">ب</span>
           <span class="letter-name">Bâ</span>
         </button>
-        <button class="letter-btn" data-letter="ta" aria-label="Lettre Tâ">
-          <span class="letter-char">ت</span>
+        <button type="button" class="letter-btn" data-letter="ta" aria-pressed="false" aria-controls="letterDetails" aria-label="Lettre Tâ">
+          <span class="letter-char" lang="ar" dir="rtl">ت</span>
           <span class="letter-name">Tâ</span>
         </button>
-        <button class="letter-btn" data-letter="tha" aria-label="Lettre Thâ">
-          <span class="letter-char">ث</span>
+        <button type="button" class="letter-btn" data-letter="tha" aria-pressed="false" aria-controls="letterDetails" aria-label="Lettre Thâ">
+          <span class="letter-char" lang="ar" dir="rtl">ث</span>
           <span class="letter-name">Thâ</span>
         </button>
-        <button class="letter-btn" data-letter="jim" aria-label="Lettre Jîm">
-          <span class="letter-char">ج</span>
+        <button type="button" class="letter-btn" data-letter="jim" aria-pressed="false" aria-controls="letterDetails" aria-label="Lettre Jîm">
+          <span class="letter-char" lang="ar" dir="rtl">ج</span>
           <span class="letter-name">Jîm</span>
         </button>
-        <button class="letter-btn" data-letter="ha" aria-label="Lettre Hâ">
-          <span class="letter-char">ح</span>
+        <button type="button" class="letter-btn" data-letter="ha" aria-pressed="false" aria-controls="letterDetails" aria-label="Lettre Hâ">
+          <span class="letter-char" lang="ar" dir="rtl">ح</span>
           <span class="letter-name">Hâ</span>
         </button>
-        <button class="letter-btn" data-letter="kha" aria-label="Lettre Khâ">
-          <span class="letter-char">خ</span>
+        <button type="button" class="letter-btn" data-letter="kha" aria-pressed="false" aria-controls="letterDetails" aria-label="Lettre Khâ">
+          <span class="letter-char" lang="ar" dir="rtl">خ</span>
           <span class="letter-name">Khâ</span>
         </button>
-        <button class="letter-btn" data-letter="dal" aria-label="Lettre Dâl">
-          <span class="letter-char">د</span>
+        <button type="button" class="letter-btn" data-letter="dal" aria-pressed="false" aria-controls="letterDetails" aria-label="Lettre Dâl">
+          <span class="letter-char" lang="ar" dir="rtl">د</span>
           <span class="letter-name">Dâl</span>
         </button>
       </div>
 
       <!-- Active Letter Feedback Box -->
-      <div class="alphabet-feedback-box reveal-on-scroll">
-        <div class="feedback-left">
-          <button class="sound-play-badge" id="playLetterSoundBtn" aria-label="Réécouter le son">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-          </button>
-          <div class="feedback-details" style="text-align: left;">
-            <div style="display: flex; align-items: baseline; gap: 10px;">
-              <span class="ar-text" id="activeLetterChar" style="font-size: 2.2rem; color: var(--c-coral); line-height: 1;">أ</span>
-              <h4 id="activeLetterName" style="color: var(--c-night-blue);">Lettre Alif (Alif)</h4>
-            </div>
-            <p id="activeLetterTip">La 1ère lettre, verticale et élégante comme un calame droit. Exemple : أَمَل (Amal - Espoir)</p>
+      <div class="alphabet-feedback-box reveal">
+        <button type="button" class="sound-play-badge" id="playLetterSoundBtn" aria-label="Réécouter le son">
+          <svg class="icon" aria-hidden="true"><use href="#i-sound"/></svg>
+        </button>
+        <div class="feedback-details" id="letterDetails" aria-live="polite">
+          <div class="feedback-heading">
+            <span class="feedback-char" id="activeLetterChar" lang="ar" dir="rtl">أ</span>
+            <h3 id="activeLetterName">Lettre Alif (Alif)</h3>
           </div>
+          <p id="activeLetterTip">La 1ère lettre, verticale et élégante comme un calame droit. Exemple : أَمَل (Amal - Espoir)</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ================= SECTION POURQUOI SIHSCHOOL ================= -->
-  <section class="why-section" id="pourquoi">
+  <section class="why-section has-sep sep-arch" id="pourquoi" aria-labelledby="pourquoi-title">
     <div class="container">
-      <div class="section-header reveal-on-scroll">
-        <span class="section-badge">
+      <div class="section-header reveal">
+        <span class="section-badge badge-white">
           <span>✨ Notre Engagement</span>
-          <span class="ar-badge">لِمَاذَا نَحْنُ</span>
+          <span class="ar-badge" lang="ar" dir="rtl">لِمَاذَا نَحْنُ</span>
         </span>
-        <h2>Pourquoi choisir SihSchool ?</h2>
+        <h2 id="pourquoi-title">Pourquoi choisir <span class="marker">SihSchool</span> ?</h2>
         <p>Une école à dimension humaine qui allie rigueur de la méthode traditionnelle et pédagogie moderne et rassurante.</p>
       </div>
 
-      <div class="why-grid" id="whyGrid">
+      <div class="why-grid" id="whyGrid" data-stagger>
         <!-- Card 1 -->
-        <div class="why-card reveal-on-scroll">
-          <div class="why-icon-box" aria-hidden="true">🌱</div>
+        <div class="why-card reveal">
+          <div class="why-icon-box" aria-hidden="true"><svg class="icon"><use href="#i-sprout"/></svg></div>
           <h3>Pédagogie progressive & douce</h3>
           <p>
             Chaque notion est découpée en étapes claires et digestes. Vous ne passez à la leçon suivante que lorsque la précédente est parfaitement assimilée et consolidée.
@@ -560,8 +602,8 @@
         </div>
 
         <!-- Card 2 -->
-        <div class="why-card reveal-on-scroll">
-          <div class="why-icon-box" aria-hidden="true">🎓</div>
+        <div class="why-card reveal">
+          <div class="why-icon-box" aria-hidden="true"><svg class="icon"><use href="#i-cap"/></svg></div>
           <h3>Une enseignante passionnée</h3>
           <p>
             Siham accompagne chaque élève avec patience, écoute et une approche valorisante.
@@ -569,8 +611,8 @@
         </div>
 
         <!-- Card 3 -->
-        <div class="why-card reveal-on-scroll">
-          <div class="why-icon-box" aria-hidden="true">💻</div>
+        <div class="why-card reveal">
+          <div class="why-icon-box" aria-hidden="true"><svg class="icon"><use href="#i-video"/></svg></div>
           <h3>Cours Zoom de 1h30 interactifs</h3>
           <p>
             Rejoignez votre session de 1h30 par semaine en direct sur Zoom depuis votre tablette ou ordinateur. Replays vidéo disponibles pour réviser à tout moment sans stress.
@@ -578,206 +620,176 @@
         </div>
 
         <!-- Card 4 -->
-        <div class="why-card reveal-on-scroll">
-          <div class="why-icon-box" aria-hidden="true">🤝</div>
+        <div class="why-card reveal">
+          <div class="why-icon-box" aria-hidden="true"><svg class="icon"><use href="#i-users"/></svg></div>
           <h3>Suivi personnalisé & bienveillant</h3>
           <p>
             Petit groupe de 3 à 5 élèves maximum pour accorder un temps de parole équitable à chacune et corriger la prononciation en temps réel.
           </p>
         </div>
       </div>
-
-      <!-- Mobile Swipe Indicator -->
-      <div class="mobile-swipe-indicator" data-for="whyGrid" aria-hidden="true">
-        <span class="swipe-hint">Glissez pour découvrir nos atouts ↔</span>
-        <div class="swipe-dots">
-          <span class="swipe-dot active"></span>
-          <span class="swipe-dot"></span>
-          <span class="swipe-dot"></span>
-          <span class="swipe-dot"></span>
-        </div>
-      </div>
     </div>
   </section>
 
   <!-- ================= SECTION COMMENT ÇA MARCHE ================= -->
-  <section class="steps-section" id="fonctionnement">
+  <section class="steps-section has-sep sep-wave" id="fonctionnement" aria-labelledby="fonctionnement-title">
     <div class="container">
-      <div class="section-header reveal-on-scroll">
-        <span class="section-badge" style="background-color: var(--c-sky-blue); color: var(--c-night-blue);">
+      <div class="section-header reveal">
+        <span class="section-badge badge-white">
           <span>🚀 Parcours Simple en 3 Pas</span>
-          <span class="ar-badge">كَيْفَ يَعْمَلْ</span>
+          <span class="ar-badge" lang="ar" dir="rtl">كَيْفَ يَعْمَلْ</span>
         </span>
-        <h2>Comment commencer votre aventure ?</h2>
+        <h2 id="fonctionnement-title">Comment commencer votre <span class="marker">aventure</span> ?</h2>
         <p>Un processus simple, rapide et sans engagement pour démarrer votre apprentissage en toute confiance.</p>
       </div>
 
-      <div class="steps-grid" id="stepsGrid">
+      <ol class="steps-grid" id="stepsGrid" data-stagger>
         <!-- Step 1 -->
-        <div class="step-card reveal-on-scroll">
-          <div class="step-number-pill">1</div>
-          <svg class="step-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+        <li class="step-card reveal">
+          <div class="step-number-pill" aria-hidden="true">1</div>
+          <div class="step-icon" aria-hidden="true"><svg class="icon"><use href="#i-calendar"/></svg></div>
           <h3>Je réserve un cours d'essai</h3>
           <p>
             Remplissez notre formulaire en 1 minute. C'est 100% offert et sans aucun engagement de poursuivre.
           </p>
-        </div>
+        </li>
 
         <!-- Step 2 -->
-        <div class="step-card reveal-on-scroll">
-          <div class="step-number-pill">2</div>
-          <svg class="step-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        <li class="step-card reveal">
+          <div class="step-number-pill" aria-hidden="true">2</div>
+          <div class="step-icon" aria-hidden="true"><svg class="icon"><use href="#i-chat-check"/></svg></div>
           <h3>On fait le point sur votre niveau</h3>
           <p>
             Un échange bienveillant de 20 minutes pour cerner vos attentes, évaluer votre niveau et répondre à toutes vos questions.
           </p>
-        </div>
+        </li>
 
         <!-- Step 3 -->
-        <div class="step-card reveal-on-scroll">
-          <div class="step-number-pill">3</div>
-          <svg class="step-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <li class="step-card reveal">
+          <div class="step-number-pill" aria-hidden="true">3</div>
+          <div class="step-icon" aria-hidden="true"><svg class="icon"><use href="#i-rocket"/></svg></div>
           <h3>Je commence mon parcours</h3>
           <p>
             Vous intégrez votre petit groupe (3 à 5 élèves max) ou vos créneaux individuels, recevez vos manuels PDF et commencez à progresser sereinement !
           </p>
-        </div>
-      </div>
-
-      <!-- Mobile Swipe Indicator -->
-      <div class="mobile-swipe-indicator" data-for="stepsGrid" aria-hidden="true">
-        <span class="swipe-hint">Glissez pour voir les 3 étapes ↔</span>
-        <div class="swipe-dots">
-          <span class="swipe-dot active"></span>
-          <span class="swipe-dot"></span>
-          <span class="swipe-dot"></span>
-        </div>
-      </div>
+        </li>
+      </ol>
     </div>
   </section>
 
   <!-- ================= SECTION TARIFS (2 FORMULES : GROUPE & PARTICULIÈRE) ================= -->
-  <section class="pricing-section" id="tarifs">
+  <section class="pricing-section has-sep sep-arch" id="tarifs" aria-labelledby="tarifs-title">
     <div class="container">
-      <div class="section-header reveal-on-scroll">
-        <span class="section-badge" style="background-color: var(--c-yellow); color: var(--c-night-blue);">
+      <div class="section-header reveal">
+        <span class="section-badge">
           <span>💎 Nos Formules Claires & Transparentes</span>
-          <span class="ar-badge">أَسْعَارُنَا</span>
+          <span class="ar-badge" lang="ar" dir="rtl">أَسْعَارُنَا</span>
         </span>
-        <h2>Choisissez la formule qui s'adapte à vos besoins</h2>
+        <h2 id="tarifs-title">Choisissez la formule qui s'adapte à <span class="marker">vos besoins</span></h2>
         <p>Un apprentissage bienveillant et de qualité, en petit groupe intimiste ou en tête-à-tête avec Siham.</p>
       </div>
 
-      <div class="pricing-grid reveal-on-scroll" id="pricingGrid">
+      <div class="pricing-grid" id="pricingGrid" data-stagger>
         <!-- Formule 1 : Formule Groupe (Recommandée) -->
-        <div class="pricing-card featured">
+        <div class="pricing-card featured reveal">
           <div class="pricing-badge-pill">⭐ Formule recommandée</div>
           <div class="pricing-card-header">
-            <span class="audience-badge badge-nourania" style="margin-bottom: 10px; display: inline-block;">Femmes & Enfants dès 5 ans</span>
+            <span class="audience-badge badge-both">Femmes & Enfants dès 5 ans</span>
             <h3>Formule Groupe</h3>
             <p>La convivialité et la motivation d'un petit groupe intimiste pour progresser chaque semaine.</p>
             <div class="pricing-price-box">
-              <span class="price-val">30 €</span>
+              <span class="price-val"><span class="count" data-count="30">30</span> €</span>
               <span class="price-period">/ mois</span>
             </div>
           </div>
           <ul class="pricing-features-list">
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
               <span><strong>1 cours de 1h30 par semaine</strong> en direct sur Zoom</span>
             </li>
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
               <span><strong>Petit groupe de 3 à 5 élèves maximum</strong> pour un temps de parole optimal</span>
             </li>
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
               <span><strong>Supports PDF complets inclus</strong> offerts dès l'inscription</span>
             </li>
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
               <span><strong>Replays vidéo accessibles 24h/24</strong> pour réviser à votre rythme</span>
             </li>
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
               <span><strong>Suivi audio WhatsApp</strong> entre les cours pour corriger la prononciation</span>
             </li>
           </ul>
           <div class="pricing-card-footer">
-            <a href="#contact" class="btn btn-coral btn-lg btn-glow" style="width: 100%;">
+            <a href="#contact" class="btn btn-coral btn-lg btn-block">
               <span>Réserver mon cours d'essai</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              <svg class="icon btn-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
             </a>
           </div>
         </div>
 
         <!-- Formule 2 : Formule Particulière -->
-        <div class="pricing-card">
+        <div class="pricing-card reveal">
           <div class="pricing-card-header">
-            <span class="audience-badge badge-women" style="margin-bottom: 10px; display: inline-block;">Sur-Mesure • Individuel</span>
+            <span class="audience-badge badge-women">Sur-Mesure • Individuel</span>
             <h3>Formule Particulière</h3>
             <p>Un accompagnement 100% individualisé pour avancer à votre rythme selon vos objectifs précis.</p>
             <div class="pricing-price-box">
-              <span class="price-val" style="font-size: 2.5rem;">Sur demande</span>
+              <span class="price-val price-val-text">Sur demande</span>
             </div>
           </div>
           <ul class="pricing-features-list">
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
               <span><strong>Cours individuel de 1h30 par semaine</strong> en direct sur Zoom</span>
             </li>
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
               <span><strong>Horaires à la carte</strong> selon vos créneaux de disponibilité</span>
             </li>
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
               <span><strong>Programme 100% adapté</strong> à votre niveau et à vos ambitions</span>
             </li>
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
               <span><strong>Supports & exercices sur-mesure</strong></span>
             </li>
             <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
               <span><strong>Lien WhatsApp direct privilégié</strong> avec Siham 6j/7</span>
             </li>
           </ul>
           <div class="pricing-card-footer">
-            <a href="https://wa.me/33757589112?text=Bonjour%20Siham,%20je%20souhaite%20me%20renseigner%20sur%20la%20Formule%20Particulière%20(cours%20individuel)." target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-lg" style="width: 100%;">
+            <a href="https://wa.me/33757589112?text=Bonjour%20Siham,%20je%20souhaite%20me%20renseigner%20sur%20la%20Formule%20Particulière%20(cours%20individuel)." target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-lg btn-block">
               <span>Me renseigner sur WhatsApp</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              <svg class="icon btn-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Mobile Swipe Indicator -->
-      <div class="mobile-swipe-indicator" data-for="pricingGrid" aria-hidden="true">
-        <span class="swipe-hint">Glissez entre Groupe et Particulier ↔</span>
-        <div class="swipe-dots">
-          <span class="swipe-dot active"></span>
-          <span class="swipe-dot"></span>
-        </div>
-      </div>
-
-      <div class="pricing-guarantee-note reveal-on-scroll">
+      <p class="pricing-guarantee-note reveal">
         🌿 <strong>Remarque bienveillante :</strong> Tarifs dégressifs pour les fratries et inscriptions familiales (maman + enfant). Possibilité de règlement mensuel sans frais.
-      </div>
+      </p>
     </div>
   </section>
 
-  <!-- ================= SECTION TÉMOIGNAGES (ENCART SOMBRE & SOBRE) ================= -->
-  <section class="testimonials-section pattern-overlay" id="temoignages-box">
+  <!-- ================= SECTION TÉMOIGNAGES ================= -->
+  <section class="testimonials-section has-sep sep-wave" id="temoignages-box" aria-labelledby="temoignages-title">
     <div class="container">
-      <div class="testimonial-pending-box reveal-on-scroll" style="background: #FFFFFF; border-radius: var(--radius-xl); padding: 48px 32px; text-align: center; max-width: 680px; margin: 0 auto; box-shadow: var(--shadow-sm); border: 1px solid rgba(19, 35, 122, 0.08);">
-        <div style="font-size: 2.6rem; margin-bottom: 14px;" aria-hidden="true">🌸</div>
-        <h3 style="font-size: 1.55rem; color: var(--c-night-blue); margin-bottom: 12px; font-weight: 700;">Vos retours arrivent bientôt 🌸</h3>
-        <p style="font-size: 1.05rem; color: #555; line-height: 1.6; margin-bottom: 26px;">
+      <div class="testimonial-pending-box reveal">
+        <div class="testimonial-emoji" aria-hidden="true">🌸</div>
+        <h2 id="temoignages-title" class="testimonial-title">Vos retours arrivent bientôt 🌸</h2>
+        <p>
           Vous avez suivi un cours avec Siham ? Partagez votre expérience avec nous directement sur WhatsApp !
         </p>
-        <a href="https://wa.me/33757589112?text=Bonjour%20Siham,%20je%20souhaite%20partager%20mon%20avis%20sur%20mon%20cours%20SihSchool%20!" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="display: inline-flex; align-items: center; gap: 10px; margin: 0 auto;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.4-1.76-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.32-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.89.87-.89 2.12s.91 2.46 1.04 2.63c.12.17 1.79 2.74 4.34 3.84.61.26 1.08.42 1.45.54.61.19 1.17.17 1.61.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
+        <a href="https://wa.me/33757589112?text=Bonjour%20Siham,%20je%20souhaite%20partager%20mon%20avis%20sur%20mon%20cours%20SihSchool%20!" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-mobile-block">
+          <svg class="icon icon-fill" aria-hidden="true"><use href="#i-whatsapp"/></svg>
           <span>Partager mon expérience sur WhatsApp</span>
         </a>
       </div>
@@ -785,93 +797,117 @@
   </section>
 
   <!-- ================= SECTION FAQ ================= -->
-  <section class="faq-section" id="faq">
+  <section class="faq-section has-sep sep-arch" id="faq" aria-labelledby="faq-title">
     <div class="container">
-      <div class="section-header reveal-on-scroll">
+      <div class="section-header reveal">
         <span class="section-badge">
           <span>❓ Questions Fréquentes</span>
-          <span class="ar-badge">الْأَسْئِلَةُ الشَّائِعَةُ</span>
+          <span class="ar-badge" lang="ar" dir="rtl">الْأَسْئِلَةُ الشَّائِعَةُ</span>
         </span>
-        <h2>Tout ce que vous devez savoir</h2>
+        <h2 id="faq-title">Tout ce que vous devez <span class="marker">savoir</span></h2>
         <p>Vous avez des interrogations avant de réserver votre cours d'essai ? Voici nos réponses détaillées en toute transparence.</p>
       </div>
 
-      <div class="faq-container reveal-on-scroll">
+      <div class="faq-container reveal">
         <!-- FAQ 1 -->
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            <span>Quel est le niveau requis pour commencer les cours ?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>
-              <strong>Aucun prérequis !</strong> Notre module Méthode Nourania commence dès la première lettre de l'alphabet (Alif). Que vous soyez débutante absolue ou que vous ayez des souvenirs lointains de l'enfance, nous adaptons les explications pas à pas pour que vous vous sentiez à l'aise dès les premières minutes.
-            </p>
+          <h3 class="faq-heading">
+            <button type="button" class="faq-question" id="faq-q1" aria-expanded="false" aria-controls="faq-a1">
+              <span>Quel est le niveau requis pour commencer les cours ?</span>
+              <span class="faq-icon" aria-hidden="true"><svg class="icon"><use href="#i-plus"/></svg></span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-a1" role="region" aria-labelledby="faq-q1">
+            <div class="faq-answer-inner">
+              <p>
+                <strong>Aucun prérequis !</strong> Notre module Méthode Nourania commence dès la première lettre de l'alphabet (Alif). Que vous soyez débutante absolue ou que vous ayez des souvenirs lointains de l'enfance, nous adaptons les explications pas à pas pour que vous vous sentiez à l'aise dès les premières minutes.
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- FAQ 2 -->
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            <span>Quel est l'âge minimum pour les cours enfants ?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>
-              Nous accueillons les enfants <strong>dès l'âge de 5 ans</strong> dans notre cours <strong>Éveil & Arabe Enfants</strong>. Les cours de 1h30 par semaine sur Zoom (3 à 5 élèves maximum) sont conçus sous forme d'ateliers ludiques et dynamiques, avec des alternances de reconnaissance des lettres, de chansons, de petits défis et de pauses actives pour stimuler leur curiosité sans fatigue.
-            </p>
+          <h3 class="faq-heading">
+            <button type="button" class="faq-question" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
+              <span>Quel est l'âge minimum pour les cours enfants ?</span>
+              <span class="faq-icon" aria-hidden="true"><svg class="icon"><use href="#i-plus"/></svg></span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-a2" role="region" aria-labelledby="faq-q2">
+            <div class="faq-answer-inner">
+              <p>
+                Nous accueillons les enfants <strong>dès l'âge de 5 ans</strong> dans notre cours <strong>Éveil & Arabe Enfants</strong>. Les cours de 1h30 par semaine sur Zoom (3 à 5 élèves maximum) sont conçus sous forme d'ateliers ludiques et dynamiques, avec des alternances de reconnaissance des lettres, de chansons, de petits défis et de pauses actives pour stimuler leur curiosité sans fatigue.
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- FAQ 3 -->
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            <span>Comment se déroulent concrètement les cours en ligne ?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>
-              Ce sont des <strong>cours en direct de 1h30 par semaine sur Zoom</strong> en petits groupes intimistes (3 à 5 élèves maximum). L'enseignante partage son écran avec des supports interactifs haute définition (méthode Nourania, livres d'exercices, calligraphie). Les élèves peuvent interagir, poser leurs questions et lire à voix haute pour une correction immédiate de la phonétique. Chaque session fait également l'objet d'un enregistrement replay disponible en ligne.
-            </p>
+          <h3 class="faq-heading">
+            <button type="button" class="faq-question" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
+              <span>Comment se déroulent concrètement les cours en ligne ?</span>
+              <span class="faq-icon" aria-hidden="true"><svg class="icon"><use href="#i-plus"/></svg></span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-a3" role="region" aria-labelledby="faq-q3">
+            <div class="faq-answer-inner">
+              <p>
+                Ce sont des <strong>cours en direct de 1h30 par semaine sur Zoom</strong> en petits groupes intimistes (3 à 5 élèves maximum). L'enseignante partage son écran avec des supports interactifs haute définition (méthode Nourania, livres d'exercices, calligraphie). Les élèves peuvent interagir, poser leurs questions et lire à voix haute pour une correction immédiate de la phonétique. Chaque session fait également l'objet d'un enregistrement replay disponible en ligne.
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- FAQ 4 -->
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            <span>De quel matériel ai-je besoin pour suivre les cours sur Zoom ?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>
-              Il vous suffit d'un <strong>ordinateur ou d'une tablette</strong> dotée de l'application gratuite <strong>Zoom</strong>, d'une webcam et d'un micro, d'une bonne connexion Internet, et d'un cahier pour prendre des notes. Tous les manuels d'apprentissage et supports visuels vous sont offerts au format PDF dès votre inscription.
-            </p>
+          <h3 class="faq-heading">
+            <button type="button" class="faq-question" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">
+              <span>De quel matériel ai-je besoin pour suivre les cours sur Zoom ?</span>
+              <span class="faq-icon" aria-hidden="true"><svg class="icon"><use href="#i-plus"/></svg></span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-a4" role="region" aria-labelledby="faq-q4">
+            <div class="faq-answer-inner">
+              <p>
+                Il vous suffit d'un <strong>ordinateur ou d'une tablette</strong> dotée de l'application gratuite <strong>Zoom</strong>, d'une webcam et d'un micro, d'une bonne connexion Internet, et d'un cahier pour prendre des notes. Tous les manuels d'apprentissage et supports visuels vous sont offerts au format PDF dès votre inscription.
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- FAQ 5 -->
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            <span>Quelles sont les modalités et moyens de paiement acceptés ?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>
-              Pour la <strong>Formule Groupe à 30 € / mois</strong>, le règlement s'effectue en ligne en toute simplicité et sans engagement de durée. Les moyens de paiement acceptés sont : <strong>carte bancaire, virement ou PayPal</strong>. Vous pouvez suspendre ou résilier à tout moment d'un simple message. Des facilités de paiement et des remises fratrie sont disponibles.
-            </p>
+          <h3 class="faq-heading">
+            <button type="button" class="faq-question" id="faq-q5" aria-expanded="false" aria-controls="faq-a5">
+              <span>Quelles sont les modalités et moyens de paiement acceptés ?</span>
+              <span class="faq-icon" aria-hidden="true"><svg class="icon"><use href="#i-plus"/></svg></span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-a5" role="region" aria-labelledby="faq-q5">
+            <div class="faq-answer-inner">
+              <p>
+                Pour la <strong>Formule Groupe à 30 € / mois</strong>, le règlement s'effectue en ligne en toute simplicité et sans engagement de durée. Les moyens de paiement acceptés sont : <strong>carte bancaire, virement ou PayPal</strong>. Vous pouvez suspendre ou résilier à tout moment d'un simple message. Des facilités de paiement et des remises fratrie sont disponibles.
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- FAQ 6 -->
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            <span>Que se passe-t-il si j'ai un empêchement ?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>
-              En cas d'imprévu, chaque session de groupe fait l'objet d'un <strong>replay vidéo accessible en ligne 24h/24</strong> pour que vous ne manquiez rien. Vous pouvez visionner la leçon à votre rythme et continuer à envoyer vos enregistrements vocaux sur WhatsApp pour validation de votre prononciation.
-            </p>
+          <h3 class="faq-heading">
+            <button type="button" class="faq-question" id="faq-q6" aria-expanded="false" aria-controls="faq-a6">
+              <span>Que se passe-t-il si j'ai un empêchement ?</span>
+              <span class="faq-icon" aria-hidden="true"><svg class="icon"><use href="#i-plus"/></svg></span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-a6" role="region" aria-labelledby="faq-q6">
+            <div class="faq-answer-inner">
+              <p>
+                En cas d'imprévu, chaque session de groupe fait l'objet d'un <strong>replay vidéo accessible en ligne 24h/24</strong> pour que vous ne manquiez rien. Vous pouvez visionner la leçon à votre rythme et continuer à envoyer vos enregistrements vocaux sur WhatsApp pour validation de votre prononciation.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -879,72 +915,72 @@
   </section>
 
   <!-- ================= SECTION CONTACT / RÉSERVATION ================= -->
-  <section class="contact-section" id="contact">
+  <section class="contact-section has-sep sep-wave" id="contact" aria-labelledby="contact-title">
     <div class="container">
-      <div class="section-header reveal-on-scroll">
-        <span class="section-badge" style="background-color: var(--c-coral-light); color: var(--c-coral);">
+      <div class="section-header reveal">
+        <span class="section-badge badge-coral">
           <span>💌 Contact & Inscription</span>
-          <span class="ar-badge">تَوَاصَلْ مَعَنَا</span>
+          <span class="ar-badge" lang="ar" dir="rtl">تَوَاصَلْ مَعَنَا</span>
         </span>
-        <h2>Réservez votre cours d'essai offert</h2>
+        <h2 id="contact-title">Réservez votre cours d'essai <span class="marker">offert</span></h2>
         <p>Prenez 1 minute pour nous faire part de vos besoins. Siham vous recontactera sous 24h pour planifier votre première séance bienveillante sans engagement.</p>
       </div>
 
       <div class="contact-grid">
         <!-- Left: Contact Details & WhatsApp Direct -->
-        <div class="contact-info-card reveal-on-scroll">
+        <div class="contact-info-card reveal">
           <h3>Échangeons avec sérénité</h3>
           <p>
             Vous avez une question sur nos plannings, notre méthode ou les tarifs dégressifs ? Siham vous répond avec plaisir.
           </p>
 
-          <div class="contact-methods">
-            <div class="method-item">
-              <div class="method-icon" aria-hidden="true">💬</div>
+          <ul class="contact-methods">
+            <li class="method-item">
+              <div class="method-icon" aria-hidden="true"><svg class="icon"><use href="#i-message"/></svg></div>
               <div>
                 <div class="method-label">WhatsApp Direct</div>
                 <div class="method-val">+33 7 57 58 91 12</div>
               </div>
-            </div>
+            </li>
 
-            <div class="method-item">
-              <div class="method-icon" aria-hidden="true">✉️</div>
+            <li class="method-item">
+              <div class="method-icon" aria-hidden="true"><svg class="icon"><use href="#i-mail"/></svg></div>
               <div>
                 <div class="method-label">Courrier Électronique</div>
                 <div class="method-val">contact@sihschool.com</div>
               </div>
-            </div>
+            </li>
 
-            <div class="method-item">
-              <div class="method-icon" aria-hidden="true">💻</div>
+            <li class="method-item">
+              <div class="method-icon" aria-hidden="true"><svg class="icon"><use href="#i-video"/></svg></div>
               <div>
                 <div class="method-label">Format des cours</div>
                 <div class="method-val">Sur Zoom (1h30 / sem. • 3 à 5 élèves max)</div>
               </div>
-            </div>
+            </li>
 
-            <div class="method-item">
-              <div class="method-icon" aria-hidden="true">🕒</div>
+            <li class="method-item">
+              <div class="method-icon" aria-hidden="true"><svg class="icon"><use href="#i-clock"/></svg></div>
               <div>
                 <div class="method-label">Disponibilité</div>
                 <div class="method-val">Du lundi au samedi : 9h00 - 19h00</div>
               </div>
-            </div>
-          </div>
+            </li>
+          </ul>
 
           <!-- Highlight WhatsApp Box -->
           <div class="whatsapp-box-highlight">
             <h4>Une question express ?</h4>
             <p>Discutez directement avec Siham sur WhatsApp pour une réponse rapide et chaleureuse.</p>
-            <a href="https://wa.me/33757589112?text=Bonjour%20Siham,%20je%20souhaite%20des%20renseignements%20sur%20les%20cours%20d'arabe%20!" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width: 100%;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.4-1.76-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.32-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.89.87-.89 2.12s.91 2.46 1.04 2.63c.12.17 1.79 2.74 4.34 3.84.61.26 1.08.42 1.45.54.61.19 1.17.17 1.61.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
+            <a href="https://wa.me/33757589112?text=Bonjour%20Siham,%20je%20souhaite%20des%20renseignements%20sur%20les%20cours%20d'arabe%20!" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-block">
+              <svg class="icon icon-fill" aria-hidden="true"><use href="#i-whatsapp"/></svg>
               <span>Écrire sur WhatsApp</span>
             </a>
           </div>
         </div>
 
         <!-- Right: Interactive Booking Form -->
-        <div class="booking-form-card reveal-on-scroll">
+        <div class="booking-form-card reveal" id="bookingCard">
           <form id="sihschoolBookingForm" novalidate>
             <!-- Honeypot anti-spam : invisible pour les humains, piège pour les robots -->
             <div class="form-honeypot" aria-hidden="true">
@@ -952,30 +988,36 @@
               <input type="text" id="formWebsite" name="website" tabindex="-1" autocomplete="off">
             </div>
 
+            <p class="form-required-note">Les champs marqués d'un <span class="req" aria-hidden="true">*</span> sont obligatoires.</p>
+
             <div class="form-group-row">
               <div class="form-group">
-                <label for="clientFirstName" class="form-label">Prénom <span class="req">*</span></label>
-                <input type="text" id="clientFirstName" class="form-input" placeholder="Ex. Yasmine" required>
+                <label for="clientFirstName" class="form-label">Prénom <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="clientFirstName" name="firstName" class="form-input" placeholder="Ex. Yasmine" autocomplete="given-name" maxlength="50" required aria-describedby="clientFirstName-error">
+                <p class="field-error" id="clientFirstName-error"></p>
               </div>
               <div class="form-group">
                 <label for="clientLastName" class="form-label">Nom</label>
-                <input type="text" id="clientLastName" class="form-input" placeholder="Ex. Benali">
+                <input type="text" id="clientLastName" name="lastName" class="form-input" placeholder="Ex. Benali" autocomplete="family-name" maxlength="50" aria-describedby="clientLastName-error">
+                <p class="field-error" id="clientLastName-error"></p>
               </div>
             </div>
 
             <div class="form-group-row">
               <div class="form-group">
-                <label for="clientEmail" class="form-label">Email <span class="req">*</span></label>
-                <input type="email" id="clientEmail" class="form-input" placeholder="votre-email@exemple.fr" required>
+                <label for="clientEmail" class="form-label">Email <span class="req" aria-hidden="true">*</span></label>
+                <input type="email" id="clientEmail" name="email" class="form-input" placeholder="votre-email@exemple.fr" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" maxlength="120" required aria-describedby="clientEmail-error">
+                <p class="field-error" id="clientEmail-error"></p>
               </div>
               <div class="form-group">
-                <label for="clientPhone" class="form-label">Téléphone / WhatsApp <span class="req">*</span></label>
-                <input type="tel" id="clientPhone" class="form-input" placeholder="07 57 58 91 12" required>
+                <label for="clientPhone" class="form-label">Téléphone / WhatsApp <span class="req" aria-hidden="true">*</span></label>
+                <input type="tel" id="clientPhone" name="phone" class="form-input" placeholder="07 57 58 91 12" autocomplete="tel" inputmode="tel" maxlength="20" required aria-describedby="clientPhone-error">
+                <p class="field-error" id="clientPhone-error"></p>
               </div>
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Pour qui réservez-vous ce cours d'essai ? <span class="req">*</span></label>
+            <fieldset class="form-group form-fieldset">
+              <legend class="form-label">Pour qui réservez-vous ce cours d'essai ? <span class="req" aria-hidden="true">*</span></legend>
               <div class="form-radio-group">
                 <label class="radio-label">
                   <input type="radio" name="targetStudent" value="femme" checked>
@@ -990,12 +1032,12 @@
                   <span>Pour nous deux</span>
                 </label>
               </div>
-            </div>
+            </fieldset>
 
             <div class="form-group-row">
               <div class="form-group">
                 <label for="selectedCourse" class="form-label">Formation souhaitée</label>
-                <select id="selectedCourse" class="form-select">
+                <select id="selectedCourse" name="selectedCourse" class="form-select">
                   <option value="nourania">Méthode Nourania (Apprendre à lire)</option>
                   <option value="fusha">Arabe Littéraire (Fus'ha)</option>
                   <option value="enfants">Éveil & Arabe Enfants</option>
@@ -1003,7 +1045,7 @@
               </div>
               <div class="form-group">
                 <label for="currentLevel" class="form-label">Niveau actuel estimé</label>
-                <select id="currentLevel" class="form-select">
+                <select id="currentLevel" name="currentLevel" class="form-select">
                   <option value="zero">Débutant complet (Ne connaît pas les lettres)</option>
                   <option value="notions">Reconnaît déjà quelques lettres</option>
                   <option value="lit-lentement">Sait déchiffrer avec hésitation</option>
@@ -1013,19 +1055,24 @@
 
             <div class="form-group">
               <label for="clientMessage" class="form-label">Disponibilités préférées ou message particulier</label>
-              <textarea id="clientMessage" class="form-textarea" placeholder="Ex. Préférence pour les cours en soirée en semaine ou le samedi matin..."></textarea>
+              <textarea id="clientMessage" name="clientMessage" class="form-textarea" placeholder="Ex. Préférence pour les cours en soirée en semaine ou le samedi matin..." maxlength="1000" aria-describedby="clientMessage-error"></textarea>
+              <p class="field-error" id="clientMessage-error"></p>
             </div>
 
-            <!-- Widget Cloudflare Turnstile (rendu dynamique si configuré) -->
+            <!-- Widget Cloudflare Turnstile (hauteur réservée : 65 px) -->
             <div id="turnstileWidget" class="form-turnstile-wrapper"></div>
 
-            <button type="submit" class="btn btn-coral btn-lg btn-glow" style="width: 100%;">
-              <span>Envoyer ma demande de cours d'essai</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" x2="11" y1="2" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            <button type="submit" class="btn btn-coral btn-lg btn-block btn-submit" data-state="idle">
+              <span class="btn-label">Envoyer ma demande de cours d'essai</span>
+              <svg class="icon btn-send-icon" aria-hidden="true"><use href="#i-send"/></svg>
+              <span class="btn-spinner" aria-hidden="true"></span>
+              <svg class="btn-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
             </button>
 
-            <p class="form-privacy-note" style="margin-top: 14px; font-size: 0.88rem; color: #666; line-height: 1.5; text-align: center;">
-              En envoyant ce formulaire, j'accepte que mes données soient utilisées pour être recontactée. Voir la <a href="politique-de-confidentialite.html" target="_blank" style="color: var(--c-coral); text-decoration: underline; font-weight: 500;">politique de confidentialité</a>.
+            <p class="form-status visually-hidden" id="formStatus" role="status" aria-live="polite"></p>
+
+            <p class="form-privacy-note">
+              En envoyant ce formulaire, j'accepte que mes données soient utilisées pour être recontactée. Voir la <a href="politique-de-confidentialite.html" target="_blank">politique de confidentialité</a>.
             </p>
           </form>
         </div>
@@ -1033,35 +1080,37 @@
     </div>
   </section>
 
+  </main>
+
   <!-- ================= SITE FOOTER ================= -->
-  <footer class="site-footer">
+  <footer class="site-footer has-sep sep-arch" id="siteFooter">
     <div class="container">
       <div class="footer-top-grid">
         <!-- Brand Info Col -->
         <div class="footer-col footer-brand">
-          <a href="#" class="brand-logo" aria-label="SihSchool Accueil">
-            <div class="logo-emblem" aria-hidden="true">
+          <a href="#accueil" class="brand-logo" aria-label="SihSchool Accueil">
+            <span class="logo-emblem" aria-hidden="true">
               <svg class="emblem-star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0 Z"/></svg>
-              <span class="emblem-char" lang="ar">س</span>
-            </div>
-            <div class="logo-text-group">
+              <span class="emblem-char" lang="ar" dir="rtl">س</span>
+            </span>
+            <span class="logo-text-group">
               <span class="logo-name">Sih<span class="logo-name-accent">School</span></span>
               <span class="logo-tagline">ÉCOLE D'ARABE EN LIGNE</span>
-            </div>
+            </span>
           </a>
           <p class="footer-bio">
             Une école en ligne bienveillante, dédiée à l'enseignement de la langue arabe pour les femmes et les enfants. Méthode Nourania, arabe littéraire et éveil ludique dans la sérénité.
           </p>
           <div class="footer-social-links">
             <a href="https://www.tiktok.com/@sihschool" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="TikTok SihSchool">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.86.12V9.42a6.34 6.34 0 0 0-.86-.06 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 9.79 5.34c3.48-2.32 3.44-5.46 3.44-5.46V8.6a8.28 8.28 0 0 0 3.22 1.45V6.69z"/></svg>
+              <svg class="icon icon-fill" aria-hidden="true"><use href="#i-tiktok"/></svg>
             </a>
           </div>
         </div>
 
         <!-- Quick Links -->
-        <div class="footer-col">
-          <h4>Navigation</h4>
+        <nav class="footer-col" aria-label="Navigation du pied de page">
+          <h2 class="footer-title">Navigation</h2>
           <ul class="footer-links-list">
             <li><a href="#accueil">Accueil</a></li>
             <li><a href="#formations">Nos Formations</a></li>
@@ -1071,15 +1120,15 @@
             <li><a href="#pourquoi">Pourquoi SihSchool ?</a></li>
             <li><a href="#tarifs">Nos Tarifs</a></li>
           </ul>
-        </div>
+        </nav>
 
         <!-- Formations Links -->
         <div class="footer-col">
-          <h4>Formations</h4>
+          <h2 class="footer-title">Formations</h2>
           <ul class="footer-links-list">
-            <li><a href="#formations" class="open-course-details" data-course="nourania">Méthode Nourania</a></li>
-            <li><a href="#formations" class="open-course-details" data-course="fusha">Arabe Littéraire</a></li>
-            <li><a href="#formations" class="open-course-details" data-course="eveil-enfants">Éveil & Arabe Enfants</a></li>
+            <li><a href="#formations" class="open-course-details" data-course="nourania" aria-haspopup="dialog">Méthode Nourania</a></li>
+            <li><a href="#formations" class="open-course-details" data-course="fusha" aria-haspopup="dialog">Arabe Littéraire</a></li>
+            <li><a href="#formations" class="open-course-details" data-course="eveil-enfants" aria-haspopup="dialog">Éveil & Arabe Enfants</a></li>
             <li><a href="#tarifs">Nos Tarifs</a></li>
             <li><a href="#contact">Cours d'essai offert</a></li>
           </ul>
@@ -1087,27 +1136,25 @@
 
         <!-- Contact info -->
         <div class="footer-col">
-          <h4>Contact & Réseau</h4>
-          <p style="color: rgba(255, 255, 255, 0.75); font-size: 0.92rem; margin-bottom: 12px; line-height: 1.8;">
-            📧 <a href="mailto:contact@sihschool.com" style="color: inherit; text-decoration: none;">contact@sihschool.com</a><br>
-            📱 WhatsApp : +33 7 57 58 91 12<br>
-            🎵 TikTok : <a href="https://www.tiktok.com/@sihschool" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">@sihschool</a>
-          </p>
-          <div style="margin-top: 16px;">
-            <a href="https://wa.me/33757589112" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-sm" style="width: 100%;">
-              <span>WhatsApp Direct</span>
-            </a>
-          </div>
+          <h2 class="footer-title">Contact & Réseau</h2>
+          <ul class="footer-contact-list">
+            <li><span aria-hidden="true">📧</span> <a href="mailto:contact@sihschool.com">contact@sihschool.com</a></li>
+            <li><span aria-hidden="true">📱</span> WhatsApp : +33 7 57 58 91 12</li>
+            <li><span aria-hidden="true">🎵</span> TikTok : <a href="https://www.tiktok.com/@sihschool" target="_blank" rel="noopener noreferrer" class="link-underline">@sihschool</a></li>
+          </ul>
+          <a href="https://wa.me/33757589112" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-sm btn-block footer-wa-btn">
+            <span>WhatsApp Direct</span>
+          </a>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <div>
+        <p>
           &copy; 2026 SihSchool. Tous droits réservés. Conçu avec bienveillance pour l'apprentissage de la langue arabe.
-        </div>
+        </p>
         <div class="footer-legal-links">
           <a href="mentions-legales.html">Mentions Légales</a>
-          <span>•</span>
+          <span aria-hidden="true">•</span>
           <a href="politique-de-confidentialite.html">Politique de Confidentialité</a>
         </div>
       </div>
@@ -1115,19 +1162,21 @@
   </footer>
 
   <!-- ================= FLOATING WHATSAPP CTA WIDGET ================= -->
-  <aside class="floating-whatsapp-widget" aria-label="Contact rapide WhatsApp">
-    <div class="whatsapp-bubble-popup">
+  <aside class="floating-whatsapp-widget" id="floatingWhatsapp" aria-label="Contact rapide WhatsApp">
+    <div class="whatsapp-bubble-popup" id="whatsappBubble" aria-hidden="true">
       <span>Besoin d'un conseil ?</span> 🌸
     </div>
     <a href="https://wa.me/33757589112?text=Bonjour%20SihSchool,%20je%20souhaite%20des%20informations%20sur%20vos%20cours%20d'arabe%20!" target="_blank" rel="noopener noreferrer" class="floating-wa-btn" aria-label="Ouvrir WhatsApp pour discuter avec l'école">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.4-1.76-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.32-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.89.87-.89 2.12s.91 2.46 1.04 2.63c.12.17 1.79 2.74 4.34 3.84.61.26 1.08.42 1.45.54.61.19 1.17.17 1.61.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
+      <svg class="icon icon-fill" aria-hidden="true"><use href="#i-whatsapp"/></svg>
     </a>
   </aside>
 
   <!-- ================= DYNAMIC DETAILS MODAL ================= -->
-  <div class="modal-backdrop" id="detailsModal" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal-window">
-      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Fermer la boîte de dialogue">&times;</button>
+  <div class="modal-backdrop" id="detailsModal" hidden>
+    <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+      <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="Fermer la boîte de dialogue">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
       <div id="modalDynamicContent">
         <!-- Content inserted dynamically by main.js -->
       </div>
@@ -1135,11 +1184,10 @@
   </div>
 
   <!-- ================= TOAST NOTIFICATION ================= -->
-  <div class="toast-notice" id="toastNotice" role="status" aria-live="polite">
-    <span id="toastMessage">Votre demande a été prise en compte avec succès.</span>
+  <!-- Les lecteurs d'écran reçoivent le message via #formStatus (aria-live) -->
+  <div class="toast-notice" id="toastNotice" aria-hidden="true">
+    <span id="toastMessage"></span>
   </div>
 
-  <!-- Main JavaScript Logic -->
-  <script src="js/main.js"></script>
 </body>
 </html>
