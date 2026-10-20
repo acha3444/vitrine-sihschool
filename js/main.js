@@ -1,7 +1,8 @@
 /**
- * SihScool - Interactive Scripting
- * Handles mobile nav, smooth scroll, tabs filter, FAQ accordions,
- * Arabic alphabet sound workshop, course modal details, and booking validation.
+ * SihScool - Scripting Principal
+ * Navigation mobile, filtres formations, accordéons FAQ,
+ * mini-atelier interactif alphabet (audio MP3 natif compatible mobile iPhone & Android),
+ * modale détails des 3 formations, et validation du formulaire de réservation.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -86,20 +87,122 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Toggle current
       item.classList.toggle('active', !isActive);
-      questionBtn.setAttribute('aria-expanded', !isActive ? 'true' : 'false');
+      questionBtn?.setAttribute('aria-expanded', !isActive ? 'true' : 'false');
     });
   });
 
+  // 5. Mini-Atelier de l'Alphabet (Audio MP3 natif - compatible iPhone iOS & Android)
+  const alphabetData = {
+    'alif': {
+      char: 'أ',
+      name: 'Lettre Alif (Alif)',
+      audio: 'assets/audio/1_alif.mp3',
+      tip: 'La 1ère lettre, verticale et élégante comme un calame droit. Exemple : أَمَل (Amal - Espoir)'
+    },
+    'ba': {
+      char: 'ب',
+      name: 'Lettre Bâ (Bâ)',
+      audio: 'assets/audio/2_baa.mp3',
+      tip: 'Comme un bateau portant un point précieux en dessous. Exemple : بَيْت (Bayt - Maison)'
+    },
+    'ta': {
+      char: 'ت',
+      name: 'Lettre Tâ (Tâ)',
+      audio: 'assets/audio/3_taa.mp3',
+      tip: 'Deux points comme deux yeux souriants au-dessus du plat. Exemple : تِين (Tîn - Figue)'
+    },
+    'tha': {
+      char: 'ث',
+      name: 'Lettre Thâ (Thâ)',
+      audio: 'assets/audio/4_thaa.mp3',
+      tip: 'Son interdental doux (comme "think" en anglais) avec 3 points en couronne. Exemple : ثَوْب (Thawb - Habit)'
+    },
+    'jim': {
+      char: 'ج',
+      name: 'Lettre Jîm (Jîm)',
+      audio: 'assets/audio/5_jeem.mp3',
+      tip: 'Un ventre généreux abritant un point en son centre. Exemple : جَمَل (Jamal - Chameau)'
+    },
+    'ha': {
+      char: 'ح',
+      name: 'Lettre Hâ (Hâ)',
+      audio: 'assets/audio/6_haa.mp3',
+      tip: 'Un H aspiré profond et chaleureux, venant du milieu de la gorge. Exemple : حُبّ (Hubb - Amour)'
+    },
+    'kha': {
+      char: 'خ',
+      name: 'Lettre Khâ (Khâ)',
+      audio: 'assets/audio/7_khaa.mp3',
+      tip: 'Son guttural raclé caractéristique, avec son point perché au sommet. Exemple : خَيْر (Khayr - Bienfait)'
+    },
+    'dal': {
+      char: 'د',
+      name: 'Lettre Dâl (Dâl)',
+      audio: 'assets/audio/8_daal.mp3',
+      tip: 'Une courbe nette et fière, lettre solaire sans point. Exemple : دَرْس (Dars - Leçon)'
+    }
+  };
 
+  let currentLetterKey = 'alif';
+  let activeAudioPlayer = null;
 
-  // 6. Course Details Modal System
+  function playLetterAudio(letterKey) {
+    const item = alphabetData[letterKey];
+    if (!item) return;
+
+    try {
+      if (activeAudioPlayer) {
+        activeAudioPlayer.pause();
+        activeAudioPlayer.currentTime = 0;
+      }
+      activeAudioPlayer = new Audio(item.audio);
+      const playPromise = activeAudioPlayer.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(err => {
+          console.warn('Audio autoplay blocked or user gesture required:', err);
+        });
+      }
+    } catch (e) {
+      console.warn('Erreur lecture audio:', e);
+    }
+  }
+
+  const letterBtns = document.querySelectorAll('.letter-btn');
+  const activeCharEl = document.getElementById('activeLetterChar');
+  const activeNameEl = document.getElementById('activeLetterName');
+  const activeTipEl = document.getElementById('activeLetterTip');
+  const playSoundBtn = document.getElementById('playLetterSoundBtn');
+
+  letterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.getAttribute('data-letter');
+      if (!alphabetData[key]) return;
+
+      currentLetterKey = key;
+      letterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const data = alphabetData[key];
+      if (activeCharEl) activeCharEl.textContent = data.char;
+      if (activeNameEl) activeNameEl.textContent = data.name;
+      if (activeTipEl) activeTipEl.textContent = data.tip;
+
+      playLetterAudio(key);
+    });
+  });
+
+  playSoundBtn?.addEventListener('click', () => {
+    playLetterAudio(currentLetterKey);
+  });
+
+  // 6. Course Details Modal System (Les 3 seules formations de SihScool)
   const courseDetailsData = {
     'nourania': {
       title: 'Méthode Nourania Complète',
       arabic: 'القاعدة النورانية',
-      audience: 'Femmes & Enfants (dès 5 ans)',
-      duration: '1h30 par semaine (1 cours hebdomadaire en direct)',
-      format: 'En ligne en direct sur Zoom • Petit groupe (3-5) ou cours particulier',
+      audience: 'Femmes & Enfants dès 5 ans',
+      duration: '1h30 par semaine (1 cours hebdomadaire en direct sur Zoom)',
+      format: 'Petit groupe de 3 à 5 élèves maximum ou cours particulier',
       description: 'La méthode de référence par excellence pour acquérir une lecture arabe fluide et irréprochable. Conçue pour décomposer chaque lettre, sa vocalisation courte et longue, ses liaisons et ses règles fondamentales.',
       modules: [
         'Étape 1 : Reconnaissance auditive et visuelle des 28 lettres isolées',
@@ -108,14 +211,14 @@ document.addEventListener('DOMContentLoaded', () => {
         'Étape 4 : Les lettres de prolongation (Madd) et les liaisons (Sukûn)',
         'Étape 5 : La Chadda (doublement) et automatismes de lecture courante'
       ],
-      includes: 'Manuel officiel PDF offert, vidéos récapitulatives de prononciation, corrections audio individuelles.'
+      includes: 'Manuel officiel PDF offert, vidéos récapitulatives, replays 24h/24 et corrections vocales WhatsApp.'
     },
     'fusha': {
       title: 'Arabe Littéraire Moderne (Fus\'ha)',
       arabic: 'اللغة العربية الفصحى',
       audience: 'Femmes adultes & adolescentes',
-      duration: '1h30 par semaine (1 cours hebdomadaire en direct)',
-      format: 'En direct sur Zoom • Classe virtuelle vivante et bienveillante',
+      duration: '1h30 par semaine (1 cours hebdomadaire en direct sur Zoom)',
+      format: 'Petit groupe de 3 à 5 élèves maximum ou cours particulier',
       description: 'Un cursus conçu pour acquérir une compréhension autonome des textes, des discussions du quotidien et des bases grammaticales sans lourdeur académique.',
       modules: [
         'Module 1 : Vocabulaire du quotidien, salutations, famille, maison, vie pratique',
@@ -123,14 +226,14 @@ document.addEventListener('DOMContentLoaded', () => {
         'Module 3 : Grammaire vivante : le nom, le verbe au présent et au passé',
         'Module 4 : Ateliers d\'expression orale et compréhension de courts récits'
       ],
-      includes: 'Fiches de vocabulaire thématiques, exercices interactifs corrigés, replays accessibles 24/7.'
+      includes: 'Fiches de vocabulaire thématiques, exercices interactifs corrigés, replays accessibles 24h/24.'
     },
     'eveil-enfants': {
-      title: 'Éveil Arabe & Pitchouns',
-      arabic: 'براعم المستقبل',
+      title: 'Éveil & Arabe Enfants',
+      arabic: 'عَالَمُ الأَطْفَالِ',
       audience: 'Enfants dès 5 ans',
-      duration: '1h30 par semaine (rythmée par activités ludiques et pauses actives)',
-      format: 'En direct sur Zoom • Mini-groupes joyeux de 3 à 4 enfants maximum',
+      duration: '1h30 par semaine rythmée par activités ludiques et pauses actives',
+      format: 'Mini-groupes joyeux de 3 à 5 élèves maximum',
       description: 'L\'arabe appris comme un plaisir ! Une pédagogie positive basée sur des comptines, des jeux visuels, des petites histoires illustrées et des défis amusants.',
       modules: [
         'Module 1 : Découverte des lettres par des imagiers d\'animaux et d\'objets',
@@ -138,22 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Module 3 : Les chiffres, couleurs, fruits et membres de la famille',
         'Module 4 : Activités manuelles et coloriages de calligraphie à imprimer'
       ],
-      includes: 'Carnet de gommettes virtuel, bilan mensuel envoyé aux parents, messagerie directe.'
-    },
-    'tajweed': {
-      title: 'Perfectionnement Lecture & Tajweed',
-      arabic: 'تحسين التلاوة والتجويد',
-      audience: 'Femmes sachant déjà déchiffrer',
-      duration: '1h30 par semaine en direct sur Zoom',
-      format: 'En direct sur Zoom • Accompagnement individualisé ou binôme',
-      description: 'Pour celles qui savent lire mais hésitent, butent sur les liaisons ou souhaitent embellir leur récitation avec les règles de Tajweed fondamentales.',
-      modules: [
-        'Module 1 : Correction des points d\'articulation (Makhârij al-Hurûf)',
-        'Module 2 : Règles du Nûn Sâkin et Tanwîn (Idhhâr, Idghâm, Iqlâb, Ikhfâ)',
-        'Module 3 : Les prolongations et degrés de lourdeur/finesse (Tafkhîm & Tarqîq)',
-        'Module 4 : Fluidité continue et maîtrise du souffle'
-      ],
-      includes: 'Enregistrements personnalisés pour s\'entraîner chez soi, écoute attentive et bienveillante.'
+      includes: 'Carnet de gommettes virtuel, bilans réguliers partagés aux parents, replays et fiches ludiques.'
     }
   };
 
@@ -190,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
 
       <div style="display: flex; gap: 14px; flex-wrap: wrap;">
-        <a href="#contact" class="btn btn-coral modal-cta-action" style="flex: 1;">Réserver mon cours d'essai gratuit</a>
+        <a href="#contact" class="btn btn-coral modal-cta-action" style="flex: 1;">Réserver mon cours d'essai offert</a>
         <button class="btn btn-secondary modal-close-action">Fermer</button>
       </div>
     `;
@@ -207,7 +295,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (courseKey === 'nourania') courseSelect.value = 'nourania';
         else if (courseKey === 'fusha') courseSelect.value = 'fusha';
         else if (courseKey === 'eveil-enfants') courseSelect.value = 'enfants';
-        else if (courseKey === 'tajweed') courseSelect.value = 'tajweed';
       }
     });
 
@@ -240,13 +327,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const toastNotice = document.getElementById('toastNotice');
   const toastMessage = document.getElementById('toastMessage');
 
-  function showToast(message) {
+  function showToast(message, isError = false) {
     if (!toastNotice || !toastMessage) return;
     toastMessage.textContent = message;
+    if (isError) {
+      toastNotice.style.background = '#8A1F1D';
+      toastNotice.style.borderColor = '#E8685A';
+    } else {
+      toastNotice.style.background = 'var(--c-night-blue)';
+      toastNotice.style.borderColor = 'var(--c-yellow)';
+    }
     toastNotice.classList.add('show');
     setTimeout(() => {
       toastNotice.classList.remove('show');
-    }, 4500);
+    }, 5500);
   }
 
   bookingForm?.addEventListener('submit', async (e) => {
@@ -262,14 +356,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const clientMessage = document.getElementById('clientMessage')?.value.trim() || '';
 
     if (!email || !phone) {
-      showToast('⚠️ Merci de remplir votre email et votre numéro de téléphone.');
+      showToast('⚠️ Merci de remplir votre adresse email et votre numéro de téléphone.', true);
       return;
     }
 
-    // Submit animation
+    // Submit button loading animation
     const submitBtn = bookingForm.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = 'Envoi en cours...';
+    const originalContent = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<span>Envoi en cours...</span>';
     submitBtn.disabled = true;
 
     try {
@@ -292,67 +386,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (response.ok && result.success) {
         bookingForm.reset();
-        showToast(`🌸 Merci ${firstName} ! Votre demande de cours d'essai a bien été envoyée. Nous vous contacterons sous 24h.`);
+        showToast(`🌸 Merci ${firstName} ! Votre demande de cours d'essai a bien été envoyée. Siham vous recontactera sous 24h.`);
       } else {
-        bookingForm.reset();
-        showToast(`🌸 Merci ${firstName} ! Votre demande a été enregistrée. Nous vous contacterons sous 24h.`);
+        const errorMsg = result.message || "Une erreur est survenue lors de l'envoi de votre demande.";
+        showToast(`⚠️ ${errorMsg} Veuillez réessayer ou contacter Siham directement sur WhatsApp.`, true);
       }
     } catch (err) {
       console.error('Erreur envoi formulaire:', err);
-      bookingForm.reset();
-      showToast(`🌸 Merci ${firstName} ! Votre demande a été enregistrée. Nous vous contacterons sous 24h.`);
+      showToast(`⚠️ Impossible de joindre le serveur. Veuillez vérifier votre connexion ou contacter Siham sur WhatsApp.`, true);
     } finally {
-      submitBtn.innerHTML = originalText;
+      submitBtn.innerHTML = originalContent;
       submitBtn.disabled = false;
     }
   });
 
-  // 8. Legal Modals Trigger
-  const legalTriggers = document.querySelectorAll('.open-legal-modal');
-  legalTriggers.forEach(trigger => {
-    trigger.addEventListener('click', (e) => {
-      e.preventDefault();
-      const type = trigger.getAttribute('data-legal');
-      if (modalBody && modalBackdrop) {
-        if (type === 'mentions') {
-          modalBody.innerHTML = `
-            <h2 style="font-size: 1.5rem; color: var(--c-night-blue); margin-bottom: 16px;">Mentions Légales</h2>
-            <p style="font-size: 0.95rem; margin-bottom: 12px; color: var(--c-text-muted);">
-              <strong>Éditeur du site :</strong> SihScool - École d'arabe en ligne pour femmes et enfants.<br>
-              <strong>Responsable de la publication :</strong> Siham K.<br>
-              <strong>Contact :</strong> contact@sihschool.com • +33 7 00 00 00 00<br>
-              <strong>Hébergement :</strong> Serveur Cloud sécurisé européen conforme RGPD.
-            </p>
-            <p style="font-size: 0.95rem; margin-bottom: 20px; color: var(--c-text-muted);">
-              <strong>Propriété intellectuelle :</strong> L'ensemble des contenus (textes, logos, illustrations vectorielles, méthodologie) présents sur ce site est la propriété exclusive de SihScool.
-            </p>
-            <button class="btn btn-secondary modal-close-action" style="width: 100%;">Fermer</button>
-          `;
-        } else {
-          modalBody.innerHTML = `
-            <h2 style="font-size: 1.5rem; color: var(--c-night-blue); margin-bottom: 16px;">Politique de Confidentialité</h2>
-            <p style="font-size: 0.95rem; margin-bottom: 12px; color: var(--c-text-muted);">
-              Chez SihScool, la confidentialité et la sérénité de nos élèves et de leurs familles sont primordiales.
-            </p>
-            <p style="font-size: 0.95rem; margin-bottom: 12px; color: var(--c-text-muted);">
-              • <strong>Collecte des données :</strong> Les informations recueillies (prénom, nom, email, téléphone) via le formulaire de réservation sont uniquement destinées à l'organisation de votre cours d'essai et au suivi pédagogique.<br>
-              • <strong>Non-divulgation :</strong> Aucune donnée n'est cédée ni vendue à des tiers.<br>
-              • <strong>Vos droits :</strong> Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données sur simple demande par email à contact@sihschool.com.
-            </p>
-            <button class="btn btn-secondary modal-close-action" style="width: 100%; margin-top: 14px;">Fermer</button>
-          `;
-        }
-
-        modalBackdrop.classList.add('open');
-        document.body.style.overflow = 'hidden';
-
-        const modalInnerClose = modalBody.querySelector('.modal-close-action');
-        modalInnerClose?.addEventListener('click', closeCourseModal);
-      }
-    });
-  });
-
-  // 9. Scroll Reveal Animations (IntersectionObserver)
+  // 8. Scroll Reveal Animations (IntersectionObserver)
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
