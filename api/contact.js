@@ -75,19 +75,19 @@ function escapeHtml(str) {
 }
 
 export default async function handler(req, res) {
-  const allowedOrigin = 'https://sihschool.com';
+  const allowedOrigins = ['https://sihschool.com', 'https://www.sihschool.com'];
   const requestOrigin = req.headers.origin;
 
   // 1. CORS Enforcement
   if (req.method === 'OPTIONS') {
-    res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
+    res.setHeader('Access-Control-Allow-Origin', allowedOrigins.includes(requestOrigin) ? requestOrigin : 'https://sihschool.com');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     res.setHeader('Access-Control-Max-Age', '86400');
     return res.status(204).end();
   }
 
-  if (requestOrigin && requestOrigin !== allowedOrigin) {
+  if (requestOrigin && !allowedOrigins.includes(requestOrigin)) {
     const isLocal = process.env.NODE_ENV !== 'production' &&
       (requestOrigin.startsWith('http://localhost') || requestOrigin.startsWith('http://127.0.0.1'));
     if (!isLocal) {
@@ -95,7 +95,7 @@ export default async function handler(req, res) {
     }
     res.setHeader('Access-Control-Allow-Origin', requestOrigin);
   } else {
-    res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
+    res.setHeader('Access-Control-Allow-Origin', requestOrigin || 'https://sihschool.com');
   }
   res.setHeader('Vary', 'Origin');
   res.setHeader('X-Content-Type-Options', 'nosniff');
