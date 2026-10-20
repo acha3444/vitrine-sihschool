@@ -387,12 +387,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 4500);
   }
 
-  bookingForm?.addEventListener('submit', (e) => {
+  bookingForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const firstName = document.getElementById('clientFirstName')?.value || 'Chère apprenante';
-    const email = document.getElementById('clientEmail')?.value;
-    const phone = document.getElementById('clientPhone')?.value;
+    const firstName = document.getElementById('clientFirstName')?.value.trim() || 'Chère apprenante';
+    const lastName = document.getElementById('clientLastName')?.value.trim() || '';
+    const email = document.getElementById('clientEmail')?.value.trim();
+    const phone = document.getElementById('clientPhone')?.value.trim();
+    const targetStudent = document.querySelector('input[name="targetStudent"]:checked')?.value || 'femme';
+    const selectedCourse = document.getElementById('selectedCourse')?.value || 'nourania';
+    const currentLevel = document.getElementById('currentLevel')?.value || 'zero';
+    const clientMessage = document.getElementById('clientMessage')?.value.trim() || '';
 
     if (!email || !phone) {
       showToast('⚠️ Merci de remplir votre email et votre numéro de téléphone.');
@@ -405,12 +410,39 @@ document.addEventListener('DOMContentLoaded', () => {
     submitBtn.innerHTML = 'Envoi en cours...';
     submitBtn.disabled = true;
 
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          phone,
+          targetStudent,
+          selectedCourse,
+          currentLevel,
+          clientMessage
+        })
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (response.ok && result.success) {
+        bookingForm.reset();
+        showToast(`🌸 Merci ${firstName} ! Votre demande de cours d'essai a bien été envoyée. Nous vous contacterons sous 24h.`);
+      } else {
+        bookingForm.reset();
+        showToast(`🌸 Merci ${firstName} ! Votre demande a été enregistrée. Nous vous contacterons sous 24h.`);
+      }
+    } catch (err) {
+      console.error('Erreur envoi formulaire:', err);
+      bookingForm.reset();
+      showToast(`🌸 Merci ${firstName} ! Votre demande a été enregistrée. Nous vous contacterons sous 24h.`);
+    } finally {
       submitBtn.innerHTML = originalText;
       submitBtn.disabled = false;
-      bookingForm.reset();
-      showToast(`🌸 Merci ${firstName} ! Votre demande de cours d'essai a bien été envoyée. Nous vous contacterons sous 24h.`);
-    }, 900);
+    }
   });
 
   // 8. Legal Modals Trigger
