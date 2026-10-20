@@ -105,20 +105,20 @@ export default async function handler(req, res) {
           ` : ''}
 
           <div style="text-align: center; margin-top: 25px;">
-            <a href="mailto:${email}?subject=Votre%20demande%20de%20cours%20d'essai%20SihScool" style="background-color: #E8685A; color: #FFFFFF; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 14px; display: inline-block;">
+            <a href="mailto:${email}?subject=Votre%20demande%20de%20cours%20d'essai%20SihSchool" style="background-color: #E8685A; color: #FFFFFF; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 14px; display: inline-block;">
               Répondre par Email
             </a>
           </div>
         </div>
 
         <div style="text-align: center; padding: 15px; color: #64748B; font-size: 12px;">
-          SihScool • École d'arabe en ligne sur Zoom • <a href="https://sihschool.com" style="color: #2E5AAC;">sihschool.com</a>
+          SihSchool • École d'arabe en ligne sur Zoom • <a href="https://sihschool.com" style="color: #2E5AAC;">sihschool.com</a>
         </div>
       </div>
     `;
 
     // Try sending from contact@sihschool.com, fallback to onboarding@resend.dev during domain verification
-    const sender = 'SihScool <contact@sihschool.com>';
+    const sender = 'SihSchool <contact@sihschool.com>';
     const recipients = ['contact@sihschool.com', 'achraf.boulali@icloud.com'];
 
     let resendResponse = await fetch('https://api.resend.com/emails', {
@@ -147,7 +147,7 @@ export default async function handler(req, res) {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          from: 'SihScool <onboarding@resend.dev>',
+          from: 'SihSchool <onboarding@resend.dev>',
           to: ['achraf.boulali@icloud.com'],
           reply_to: email,
           subject: `🌸 Nouvelle demande d'essai : ${fullName} (${courseLabel})`,

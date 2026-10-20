@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 184" width="150" height="184">
+  <path d="M 0 75 A 75 75 0 0 1 150 75 L 150 164 A 20 20 0 0 1 130 184 L 20 184 A 20 20 0 0 1 0 164 Z" fill="#13237A"/>
+  <path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0 Z" transform="translate(64, 28) scale(0.92)" fill="#D4A63A"/>
+  <text x="75" y="146" text-anchor="middle" font-family="'Baloo Bhaijaan 2', 'Cairo', -apple-system, sans-serif" font-size="108" font-weight="700" fill="#D4A63A">س</text>
+</svg>

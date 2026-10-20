@@ -1,5 +1,5 @@
 /**
- * SihScool - Scripting Principal
+ * SihSchool - Scripting Principal
  * Navigation mobile, filtres formations, accordéons FAQ,
  * mini-atelier interactif alphabet (audio MP3 natif compatible mobile iPhone & Android),
  * modale détails des 3 formations, et validation du formulaire de réservation.
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
     playLetterAudio(currentLetterKey);
   });
 
-  // 6. Course Details Modal System (Les 3 seules formations de SihScool)
+  // 6. Course Details Modal System (Les 3 seules formations de SihSchool)
   const courseDetailsData = {
     'nourania': {
       title: 'Méthode Nourania Complète',
@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // 7. Booking Form Submission & Toast Feedback
-  const bookingForm = document.getElementById('sihscoolBookingForm');
+  const bookingForm = document.getElementById('sihschoolBookingForm');
   const toastNotice = document.getElementById('toastNotice');
   const toastMessage = document.getElementById('toastMessage');
 

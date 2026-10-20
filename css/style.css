@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SIHSCOOL - Modern, Warm & Elegant Showcase Website
+   SIHSCHOOL - Modern, Warm & Elegant Showcase Website
    Design System & Master Stylesheet
    Palette:
      --c-night-blue: #13237A (Titres et texte principal)
@@ -14,7 +14,7 @@
      --hero-grad-end:   #FAF4E4
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&family=Cairo:wght@500;600;700;800;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
 
 /* --- CSS VARIABLES & TOKENS --- */
 :root {
@@ -32,6 +32,8 @@
   --c-violet-light: #F1EEFB;
   --c-yellow: #FDE678;
   --c-yellow-rgb: 253, 230, 120;
+  --c-gold: #D4A63A;
+  --c-gold-dark: #A97A12;
   --c-cream: #FCF7EB;
   --c-cream-card: #FFFFFF;
   --c-lavender: #DCD2F8;
@@ -48,6 +50,7 @@
   /* Fonts */
   --font-main: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-arabic: 'Cairo', 'Tajawal', -apple-system, sans-serif;
+  --font-logo: 'Baloo Bhaijaan 2', 'Cairo', sans-serif;
   
   /* Radii */
   --radius-sm: 8px;
@@ -370,53 +373,87 @@ section {
   height: 74px;
 }
 
-/* Brand Logo */
+/* Brand Logo (Baloo Bhaijaan 2) */
 .brand-logo {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 12px;
   text-decoration: none;
+  font-family: var(--font-logo);
 }
 
-.logo-icon-box {
-  width: 44px;
+/* Emblème en arche (proportions 150/184) */
+.logo-emblem {
+  position: relative;
+  width: 36px;
   height: 44px;
-  border-radius: var(--radius-md);
-  background: linear-gradient(135deg, var(--c-lavender) 0%, var(--c-sky-blue) 100%);
+  border-radius: 18px 18px 5px 5px;
+  background-color: var(--c-night-blue);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--c-night-blue);
-  font-family: var(--font-arabic);
-  font-size: 1.45rem;
-  font-weight: 800;
-  box-shadow: 0 3px 10px rgba(19, 35, 122, 0.1);
-  border: 2px solid #FFFFFF;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(19, 35, 122, 0.18);
+  transition: transform var(--trans-fast, 0.2s ease);
+}
+
+.brand-logo:hover .logo-emblem {
+  transform: translateY(-1px);
+}
+
+.logo-emblem .emblem-star {
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6.5px;
+  height: 6.5px;
+}
+
+.logo-emblem .emblem-star path {
+  fill: var(--c-gold);
+}
+
+.logo-emblem .emblem-char {
+  color: var(--c-gold);
+  font-family: var(--font-logo);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 8px;
+  user-select: none;
 }
 
 .logo-text-group {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .logo-name {
-  font-size: 1.4rem;
+  font-family: var(--font-logo);
+  font-size: 1.55rem;
   font-weight: 800;
   color: var(--c-night-blue);
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
 }
 
-.logo-name span {
-  color: var(--c-coral);
+.logo-name .logo-name-accent {
+  color: var(--c-gold-dark);
+  font-weight: 800;
 }
 
 .logo-tagline {
-  font-size: 0.72rem;
-  color: var(--c-blue);
-  font-weight: 500;
-  letter-spacing: 0.03em;
+  font-family: var(--font-logo);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: #4A5280;
   text-transform: uppercase;
+  margin-top: 3px;
+  line-height: 1.1;
+  white-space: nowrap;
 }
 
 /* Navigation Links */
@@ -1319,7 +1356,7 @@ section {
   color: var(--c-text-muted);
 }
 
-/* --- POURQUOI SIHSCOOL SECTION --- */
+/* --- POURQUOI SIHSCHOOL SECTION --- */
 .why-section {
   background-color: #FFFFFF;
 }
@@ -2037,12 +2074,56 @@ section {
   }
 }
 
-.footer-brand .brand-logo .logo-name {
-  color: #FFFFFF;
+/* Footer sur fond sombre (bleu nuit #13237A) : inversion des couleurs */
+.site-footer .brand-logo,
+.footer-brand .brand-logo {
+  gap: 16px;
 }
 
+.site-footer .logo-emblem,
+.footer-brand .logo-emblem {
+  width: 52px;
+  height: 64px;
+  border-radius: 26px 26px 7px 7px;
+  background-color: var(--c-gold);
+  box-shadow: 0 4px 14px rgba(212, 166, 58, 0.25);
+}
+
+.site-footer .logo-emblem .emblem-star,
+.footer-brand .logo-emblem .emblem-star {
+  top: 10px;
+  width: 9.5px;
+  height: 9.5px;
+}
+
+.site-footer .logo-emblem .emblem-star path,
+.footer-brand .logo-emblem .emblem-star path {
+  fill: var(--c-night-blue);
+}
+
+.site-footer .logo-emblem .emblem-char,
+.footer-brand .logo-emblem .emblem-char {
+  color: var(--c-night-blue);
+  font-size: 38px;
+  margin-top: 12px;
+}
+
+.site-footer .logo-name,
+.footer-brand .logo-name {
+  color: #FFFFFF;
+  font-size: 1.85rem;
+}
+
+.site-footer .logo-name .logo-name-accent,
+.footer-brand .logo-name .logo-name-accent {
+  color: var(--c-gold);
+}
+
+.site-footer .logo-tagline,
 .footer-brand .logo-tagline {
-  color: var(--c-yellow);
+  color: #C9CEEB;
+  letter-spacing: 0.22em;
+  font-size: 0.68rem;
 }
 
 .footer-bio {
@@ -2419,7 +2500,7 @@ section, header, footer, aside {
     padding: 26px 20px !important;
   }
 
-  /* Cartes Pourquoi SihScool en swipe */
+  /* Cartes Pourquoi SihSchool en swipe */
   .why-grid > .why-card {
     flex: 0 0 80% !important;
     max-width: 290px !important;
@@ -2589,5 +2670,12 @@ section, header, footer, aside {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
+  }
+
+  /* Cache le sous-titre du logo sur mobile si manque de place */
+  @media (max-width: 480px) {
+    .logo-tagline {
+      display: none !important;
+    }
   }
 }
