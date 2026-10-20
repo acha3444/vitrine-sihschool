@@ -748,7 +748,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const waBubble = document.getElementById('whatsappBubble');
 
   if (floatingWa) {
-    setTimeout(() => {
+    const heroSection = document.getElementById('accueil');
+    const revealWa = () => {
+      if (heroSection && heroSection.getBoundingClientRect().bottom > 0) return;
+      window.removeEventListener('scroll', revealWa);
       floatingWa.classList.add('is-visible');
 
       let bubbleSeen = false;
@@ -761,7 +764,9 @@ document.addEventListener('DOMContentLoaded', () => {
           setTimeout(() => waBubble.classList.remove('is-shown'), 5000);
         }, 700);
       }
-    }, 3000);
+    };
+    window.addEventListener('scroll', revealWa, { passive: true });
+    revealWa();
 
     const tuckTargets = [bookingCard, document.getElementById('siteFooter')].filter(Boolean);
     if ('IntersectionObserver' in window && tuckTargets.length) {

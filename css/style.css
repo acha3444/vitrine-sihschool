@@ -3178,3 +3178,74 @@ section[id],
   .nav-link::after { left: 7px; right: 7px; }
   .nav-cta .btn { white-space: nowrap; }
 }
+
+/* ================= REFONTE ESTHÉTIQUE ================= */
+.top-bar a { display: inline-flex; align-items: center; min-height: 44px; padding-inline: 4px; }
+
+.btn-coral { background: linear-gradient(135deg, #EC7A6D 0%, var(--c-coral) 55%, #DF5D4F 100%); }
+@media (hover: hover) and (pointer: fine) {
+  .btn-coral:hover { background: linear-gradient(135deg, #E8685A 0%, var(--c-coral-hover) 100%); }
+}
+.btn-secondary { border-color: var(--c-night-blue); }
+
+.section-header .ar-badge, .split-content .ar-badge { color: var(--c-gold-text); }
+
+.course-card, .why-card, .step-card, .benefit-card, .pricing-card, .stat-card, .faq-item {
+  border-radius: var(--radius-card);
+  border: 1px solid rgba(19, 35, 122, 0.07);
+  box-shadow: var(--shadow-card);
+}
+
+/* Grande lettre arabe en filigrane doré */
+.course-card { position: relative; overflow: hidden; isolation: isolate; }
+.course-card .card-letter {
+  position: absolute;
+  top: -18px;
+  right: -6px;
+  z-index: -1;
+  width: auto;
+  height: auto;
+  background: none;
+  font-size: 9rem;
+  color: var(--c-gold);
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+/* Pastilles d'icônes pastel */
+.testimonial-emoji {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  margin-inline: auto;
+  border-radius: 22px;
+  background: var(--c-lavender);
+  color: var(--c-violet);
+}
+.testimonial-emoji .icon { width: 32px; height: 32px; }
+
+/* Tarifs */
+.pricing-card:not(.featured) { background: #FFFFFF; box-shadow: var(--shadow-sm); }
+.pricing-card.featured .price-val { color: var(--c-night-blue); font-size: clamp(3.25rem, 2.6rem + 2.6vw, 4.5rem); }
+.pricing-badge-pill { background: var(--c-yellow); color: var(--c-night-blue); }
+@media (min-width: 768px) {
+  .pricing-card.featured { transform: scale(1.04); z-index: 1; }
+  .reveal.is-visible.pricing-card.featured { animation: none; }
+}
+
+/* Étoiles dorées dans les sections */
+.section-stars { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.sec-star { position: absolute; fill: var(--c-gold); opacity: 0.55; animation: twinkle 4s ease-in-out infinite; }
+.sec-star.s1 { top: 10%; left: 6%; width: 14px; height: 14px; }
+.sec-star.s2 { top: 22%; right: 8%; width: 18px; height: 18px; animation-delay: -1.5s; }
+.sec-star.s3 { bottom: 12%; left: 14%; width: 11px; height: 11px; animation-delay: -2.6s; }
+.section-stars ~ .container { position: relative; }
+
+/* Footer */
+.footer-links-list a, .footer-legal-links a { color: #DCD2F8; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sec-star { animation: none !important; }
+  .btn-coral::after { display: none; }
+}
