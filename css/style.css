@@ -2292,3 +2292,302 @@ section {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ========================================================
+   OPTIMISATIONS MOBILES AVANCÉES (ZERO-WOBBLE & SWIPE HORIZONTAL)
+   Parfait pour ordi, mais ultra fluide et compact sur mobile
+   ======================================================== */
+
+/* Règle anti-dérive globale : la page ne bouge JAMAIS latéralement */
+html {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  touch-action: pan-y pinch-zoom;
+}
+
+body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  position: relative;
+  overscroll-behavior-x: none;
+}
+
+section, header, footer, aside {
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+/* Indicateur de swipe (caché sur ordinateur) */
+.mobile-swipe-indicator {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Réduction des vides verticaux excessifs sur smartphone */
+  section {
+    padding: 44px 0 !important;
+  }
+  
+  .section-header {
+    margin-bottom: 22px !important;
+  }
+  
+  .section-header h2 {
+    font-size: 1.6rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 8px !important;
+  }
+  
+  .section-header p {
+    font-size: 0.94rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Bar d'arguments de réassurance : compacte en 2x2 */
+  .stats-bar {
+    padding: 18px 0 !important;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  
+  .stat-card {
+    padding: 10px 12px !important;
+    gap: 10px !important;
+    border-radius: 14px !important;
+  }
+  
+  .stat-icon {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 1.1rem !important;
+    border-radius: 10px !important;
+  }
+  
+  .stat-info h4 {
+    font-size: 0.92rem !important;
+    margin-bottom: 2px !important;
+  }
+  
+  .stat-info p {
+    font-size: 0.74rem !important;
+    line-height: 1.25 !important;
+  }
+
+  /* PISTES SWIPEABLES HORIZONTALES (CAROUSELS NOUVELLE GÉNÉRATION) */
+  .courses-grid,
+  .why-grid,
+  .steps-grid,
+  .pricing-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-x: contain !important;
+    overscroll-behavior-y: auto !important;
+    touch-action: pan-x pan-y !important;
+    scrollbar-width: none !important;
+    padding: 14px 20px 20px 20px !important;
+    margin-left: -20px !important;
+    margin-right: -20px !important;
+    gap: 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  .courses-grid::-webkit-scrollbar,
+  .why-grid::-webkit-scrollbar,
+  .steps-grid::-webkit-scrollbar,
+  .pricing-grid::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  /* Cartes Formations en swipe (85% de largeur pour faire dépasser la suivante) */
+  .courses-grid > .course-card {
+    flex: 0 0 85% !important;
+    max-width: 320px !important;
+    min-width: 270px !important;
+    scroll-snap-align: center !important;
+    scroll-snap-stop: always !important;
+    margin-bottom: 0 !important;
+    padding: 26px 20px !important;
+  }
+
+  /* Cartes Pourquoi SihScool en swipe */
+  .why-grid > .why-card {
+    flex: 0 0 80% !important;
+    max-width: 290px !important;
+    min-width: 260px !important;
+    scroll-snap-align: center !important;
+    scroll-snap-stop: always !important;
+    padding: 26px 20px !important;
+  }
+
+  /* Cartes Étapes en swipe */
+  .steps-grid > .step-card {
+    flex: 0 0 82% !important;
+    max-width: 295px !important;
+    min-width: 260px !important;
+    scroll-snap-align: center !important;
+    scroll-snap-stop: always !important;
+    margin-top: 35px !important;
+    padding: 30px 20px !important;
+  }
+
+  /* Cartes Tarifs en swipe */
+  .pricing-grid > .pricing-card {
+    flex: 0 0 86% !important;
+    max-width: 330px !important;
+    min-width: 280px !important;
+    scroll-snap-align: center !important;
+    scroll-snap-stop: always !important;
+    margin-top: 20px !important;
+    padding: 34px 22px !important;
+  }
+
+  /* Indicateurs visuels sous les pistes swipeables */
+  .mobile-swipe-indicator {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    margin-top: 4px !important;
+    margin-bottom: 15px !important;
+  }
+
+  .mobile-swipe-indicator .swipe-hint {
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    color: var(--c-blue) !important;
+    opacity: 0.85 !important;
+    letter-spacing: 0.02em !important;
+  }
+
+  .mobile-swipe-indicator .swipe-dots {
+    display: flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+  }
+
+  .mobile-swipe-indicator .swipe-dot {
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: var(--radius-pill) !important;
+    background-color: rgba(19, 35, 122, 0.22) !important;
+    transition: all 0.25s ease !important;
+    cursor: pointer !important;
+  }
+
+  .mobile-swipe-indicator .swipe-dot.active {
+    width: 22px !important;
+    background-color: var(--c-coral) !important;
+    box-shadow: 0 2px 6px rgba(232, 104, 90, 0.4) !important;
+  }
+
+  /* Optimisation Espace Femmes & Espace Enfants sur mobile */
+  .women-section, .kids-section {
+    padding: 44px 0 !important;
+  }
+
+  .arch-visual-card img, .kids-visual-card img {
+    max-height: 240px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    border-radius: 24px !important;
+  }
+
+  .feature-benefits-list {
+    margin-bottom: 22px !important;
+  }
+
+  .benefit-card {
+    padding: 14px !important;
+    gap: 12px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .benefit-icon-box {
+    width: 42px !important;
+    height: 42px !important;
+    font-size: 1.25rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  .benefit-text h4 {
+    font-size: 0.98rem !important;
+    margin-bottom: 2px !important;
+  }
+
+  .benefit-text p {
+    font-size: 0.86rem !important;
+    line-height: 1.45 !important;
+  }
+
+  /* Mini-Atelier Alphabet sur mobile */
+  .alphabet-workshop {
+    padding: 44px 0 !important;
+  }
+
+  .alphabet-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 8px !important;
+    max-width: 100% !important;
+    margin-bottom: 18px !important;
+  }
+
+  .letter-btn {
+    padding: 10px 4px !important;
+    border-radius: 12px !important;
+  }
+
+  .letter-char {
+    font-size: 1.7rem !important;
+  }
+
+  .letter-name {
+    font-size: 0.72rem !important;
+  }
+
+  .alphabet-feedback-box {
+    padding: 16px !important;
+    gap: 14px !important;
+  }
+
+  .sound-play-badge {
+    width: 46px !important;
+    height: 46px !important;
+    font-size: 1.2rem !important;
+  }
+
+  .feedback-details h4 {
+    font-size: 1.05rem !important;
+  }
+
+  .feedback-details p {
+    font-size: 0.86rem !important;
+  }
+
+  /* Formulaire de réservation & boutons touch-friendly */
+  .booking-form-card {
+    padding: 24px 18px !important;
+  }
+
+  .form-group-row {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .btn {
+    min-height: 48px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}

@@ -65,6 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 250);
         }
       });
+
+      // Recalibrate swipe indicators if visible courses change
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent('recalibrate-swipe'));
+      }, 260);
     });
   });
 
@@ -415,4 +420,78 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     document.querySelectorAll('.reveal-on-scroll').forEach(el => el.classList.add('revealed'));
   }
+
+  // 9. Mobile Swipe Tracks & Indicator Dots Synchronization
+  function initMobileSwipeIndicators() {
+    const indicators = document.querySelectorAll('.mobile-swipe-indicator');
+
+    indicators.forEach(indicator => {
+      const trackId = indicator.getAttribute('data-for');
+      const track = document.getElementById(trackId);
+      if (!track) return;
+
+      const dots = indicator.querySelectorAll('.swipe-dot');
+      
+      const getVisibleCards = () => {
+        return Array.from(track.children).filter(el => {
+          if (!el.classList || el.classList.contains('mobile-swipe-indicator')) return false;
+          return window.getComputedStyle(el).display !== 'none';
+        });
+      };
+
+      let isTicking = false;
+      const updateActiveDot = () => {
+        isTicking = false;
+        const cards = getVisibleCards();
+        if (!cards.length) return;
+
+        const trackRect = track.getBoundingClientRect();
+        const trackCenter = trackRect.left + trackRect.width / 2;
+
+        let closestIndex = 0;
+        let minDistance = Infinity;
+
+        cards.forEach((card, idx) => {
+          const cardRect = card.getBoundingClientRect();
+          const cardCenter = cardRect.left + cardRect.width / 2;
+          const dist = Math.abs(trackCenter - cardCenter);
+          if (dist < minDistance) {
+            minDistance = dist;
+            closestIndex = idx;
+          }
+        });
+
+        dots.forEach((dot, dotIdx) => {
+          dot.classList.toggle('active', dotIdx === closestIndex);
+        });
+      };
+
+      track.addEventListener('scroll', () => {
+        if (!isTicking) {
+          window.requestAnimationFrame(updateActiveDot);
+          isTicking = true;
+        }
+      }, { passive: true });
+
+      // Click on dot jumps smoothly to that item
+      dots.forEach((dot, dotIdx) => {
+        dot.addEventListener('click', () => {
+          const cards = getVisibleCards();
+          if (cards[dotIdx]) {
+            cards[dotIdx].scrollIntoView({
+              behavior: 'smooth',
+              inline: 'center',
+              block: 'nearest'
+            });
+          }
+        });
+      });
+
+      window.addEventListener('resize', updateActiveDot, { passive: true });
+      window.addEventListener('recalibrate-swipe', updateActiveDot, { passive: true });
+      updateActiveDot();
+    });
+  }
+
+  initMobileSwipeIndicators();
 });
