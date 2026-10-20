@@ -24,6 +24,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&family=Cairo:wght@500;600;700;800;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
   
+  <!-- Cloudflare Turnstile Anti-Spam (gratuit et sans puzzle) -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -943,6 +946,12 @@
         <!-- Right: Interactive Booking Form -->
         <div class="booking-form-card reveal-on-scroll">
           <form id="sihschoolBookingForm" novalidate>
+            <!-- Honeypot anti-spam : invisible pour les humains, piège pour les robots -->
+            <div class="form-honeypot" aria-hidden="true">
+              <label for="formWebsite">Ne pas remplir ce champ si vous êtes humain</label>
+              <input type="text" id="formWebsite" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
             <div class="form-group-row">
               <div class="form-group">
                 <label for="clientFirstName" class="form-label">Prénom <span class="req">*</span></label>
@@ -1006,6 +1015,9 @@
               <label for="clientMessage" class="form-label">Disponibilités préférées ou message particulier</label>
               <textarea id="clientMessage" class="form-textarea" placeholder="Ex. Préférence pour les cours en soirée en semaine ou le samedi matin..."></textarea>
             </div>
+
+            <!-- Widget Cloudflare Turnstile (rendu dynamique si configuré) -->
+            <div id="turnstileWidget" class="form-turnstile-wrapper"></div>
 
             <button type="submit" class="btn btn-coral btn-lg btn-glow" style="width: 100%;">
               <span>Envoyer ma demande de cours d'essai</span>

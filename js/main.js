@@ -327,10 +327,43 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === modalBackdrop) closeCourseModal();
   });
 
-  // 7. Booking Form Submission & Toast Feedback
+  // 7. Booking Form Submission, Anti-Spam & Feedback
   const bookingForm = document.getElementById('sihschoolBookingForm');
   const toastNotice = document.getElementById('toastNotice');
   const toastMessage = document.getElementById('toastMessage');
+
+  let turnstileWidgetId = null;
+
+  async function setupTurnstile() {
+    const container = document.getElementById('turnstileWidget');
+    if (!container) return;
+
+    try {
+      const res = await fetch('/api/turnstile-config');
+      if (!res.ok) return;
+      const data = await res.json().catch(() => ({}));
+      const siteKey = data?.siteKey;
+
+      if (!siteKey) return;
+
+      const renderWhenReady = () => {
+        if (window.turnstile && typeof window.turnstile.render === 'function') {
+          turnstileWidgetId = window.turnstile.render('#turnstileWidget', {
+            sitekey: siteKey,
+            theme: 'light'
+          });
+        } else {
+          setTimeout(renderWhenReady, 120);
+        }
+      };
+
+      renderWhenReady();
+    } catch (e) {
+      console.warn('Configuration anti-spam non disponible:', e);
+    }
+  }
+
+  setupTurnstile();
 
   function showToast(message, isError = false) {
     if (!toastNotice || !toastMessage) return;
@@ -351,7 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
   bookingForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const firstName = document.getElementById('clientFirstName')?.value.trim() || 'Chère apprenante';
+    const firstName = document.getElementById('clientFirstName')?.value.trim();
     const lastName = document.getElementById('clientLastName')?.value.trim() || '';
     const email = document.getElementById('clientEmail')?.value.trim();
     const phone = document.getElementById('clientPhone')?.value.trim();
@@ -359,10 +392,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectedCourse = document.getElementById('selectedCourse')?.value || 'nourania';
     const currentLevel = document.getElementById('currentLevel')?.value || 'zero';
     const clientMessage = document.getElementById('clientMessage')?.value.trim() || '';
+    const website = document.getElementById('formWebsite')?.value || '';
+
+    // Frontend validation
+    if (!firstName || firstName.length < 1 || firstName.length > 50) {
+      showToast('⚠️ Merci de renseigner votre prénom (1 à 50 caractères).', true);
+      return;
+    }
 
     if (!email || !phone) {
       showToast('⚠️ Merci de remplir votre adresse email et votre numéro de téléphone.', true);
       return;
+    }
+
+    // Token Cloudflare Turnstile si actif
+    let turnstileToken = '';
+    if (window.turnstile && turnstileWidgetId !== null && typeof window.turnstile.getResponse === 'function') {
+      turnstileToken = window.turnstile.getResponse(turnstileWidgetId) || '';
+    } else {
+      turnstileToken = document.querySelector('[name="cf-turnstile-response"]')?.value || '';
     }
 
     // Submit button loading animation
@@ -383,7 +431,9 @@ document.addEventListener('DOMContentLoaded', () => {
           targetStudent,
           selectedCourse,
           currentLevel,
-          clientMessage
+          clientMessage,
+          website,
+          turnstileToken
         })
       });
 
@@ -391,14 +441,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (response.ok && result.success) {
         bookingForm.reset();
+        if (window.turnstile && turnstileWidgetId !== null && typeof window.turnstile.reset === 'function') {
+          window.turnstile.reset(turnstileWidgetId);
+        }
         showToast(`🌸 Merci ${firstName} ! Votre demande de cours d'essai a bien été envoyée. Siham vous recontactera sous 24h.`);
       } else {
+        if (window.turnstile && turnstileWidgetId !== null && typeof window.turnstile.reset === 'function') {
+          window.turnstile.reset(turnstileWidgetId);
+        }
         const errorMsg = result.message || "Une erreur est survenue lors de l'envoi de votre demande.";
-        showToast(`⚠️ ${errorMsg} Veuillez réessayer ou contacter Siham directement sur WhatsApp.`, true);
+        showToast(`⚠️ ${errorMsg}`, true);
       }
     } catch (err) {
       console.error('Erreur envoi formulaire:', err);
-      showToast(`⚠️ Impossible de joindre le serveur. Veuillez vérifier votre connexion ou contacter Siham sur WhatsApp.`, true);
+      if (window.turnstile && turnstileWidgetId !== null && typeof window.turnstile.reset === 'function') {
+        window.turnstile.reset(turnstileWidgetId);
+      }
+      showToast('⚠️ Impossible de joindre le serveur. Veuillez vérifier votre connexion ou contacter Siham sur WhatsApp.', true);
     } finally {
       submitBtn.innerHTML = originalContent;
       submitBtn.disabled = false;

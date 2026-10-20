@@ -2039,6 +2039,35 @@ section {
   min-height: 110px;
 }
 
+/* Honeypot anti-spam (invisible pour les vrais visiteurs) */
+.form-honeypot {
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  visibility: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+}
+
+/* Cloudflare Turnstile Widget */
+.form-turnstile-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 18px;
+  min-height: 65px;
+}
+
+.form-turnstile-wrapper:empty {
+  display: none !important;
+  min-height: 0 !important;
+  margin-bottom: 0 !important;
+}
+
 .form-privacy-note {
   font-size: 0.82rem;
   color: var(--c-text-muted);
