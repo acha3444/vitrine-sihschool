@@ -180,8 +180,18 @@ export default async function handler(req, res) {
     targetStudent = '',
     selectedCourse = '',
     currentLevel = '',
-    clientMessage = ''
+    clientMessage = '',
+    source = ''
   } = req.body || {};
+
+  // Provenance (facultative) : comment la personne a connu SihSchool
+  const sourceMap = {
+    'tiktok': 'TikTok',
+    'bouche-a-oreille': 'Bouche-à-oreille',
+    'google': 'Recherche Google',
+    'autre': 'Autre'
+  };
+  const safeSource = sourceMap[source] || 'Non précisé';
 
   // Prénom (1-50 caractères)
   const trimmedFirstName = typeof firstName === 'string' ? firstName.trim() : '';
@@ -240,7 +250,7 @@ export default async function handler(req, res) {
   }
 
   // Niveau autorisé
-  const allowedLevels = ['zero', 'notions', 'lit-lentement', 'lit-bien'];
+  const allowedLevels = ['zero', 'notions', 'lit-lentement', 'lit-bien', 'a-definir'];
   if (!allowedLevels.includes(currentLevel)) {
     return res.status(400).json({
       success: false,
@@ -287,7 +297,8 @@ export default async function handler(req, res) {
       'zero': 'Débutant complet (Ne connaît pas les lettres)',
       'notions': 'Reconnaît quelques lettres',
       'lit-lentement': 'Sait déchiffrer avec hésitation',
-      'lit-bien': 'Lit fluidement, veut apprendre la langue'
+      'lit-bien': 'Lit fluidement, veut apprendre la langue',
+      'a-definir': 'À évaluer pendant l\'échange (page TikTok)'
     };
 
     // Sanitize all inputs before inserting into HTML
@@ -342,6 +353,10 @@ export default async function handler(req, res) {
             <tr>
               <td style="padding: 10px 0; border-bottom: 1px solid #F1EFEA; color: #64748B; font-size: 14px;">📈 Niveau estimé :</td>
               <td style="padding: 10px 0; border-bottom: 1px solid #F1EFEA; color: #13237A; font-size: 14px; font-weight: 600;">${safeLevel}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #F1EFEA; color: #64748B; font-size: 14px;">🔎 Nous a connus via :</td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #F1EFEA; color: #13237A; font-size: 14px; font-weight: 600;">${safeSource}</td>
             </tr>
           </table>
 

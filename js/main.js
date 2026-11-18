@@ -697,6 +697,7 @@ document.addEventListener('DOMContentLoaded', () => {
       selectedCourse: document.getElementById('selectedCourse')?.value || 'nourania',
       currentLevel: document.getElementById('currentLevel')?.value || 'zero',
       clientMessage: value('clientMessage'),
+      source: document.getElementById('leadSource')?.value || '',
       website: document.getElementById('formWebsite')?.value || '',
       turnstileToken: ''
     };
